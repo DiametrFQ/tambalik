@@ -1,0 +1,4 @@
+# Snake
+
+## How to play?
+

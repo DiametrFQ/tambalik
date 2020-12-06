@@ -1,0 +1,258 @@
+*{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(182, 162, 119);
+}
+.button{
+    margin: 40px 1px;
+    text-align: center;
+    height: 70px;
+    border: 1px solid white;
+    font-size: 48px;
+    color: black;
+    background-color: rgb(170, 170, 112);
+    border-radius: 16px;
+}
+#button_for_open_menu{
+    position: absolute;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(158, 132, 71);
+    z-index: 100;
+}
+#button_for_new_move{
+    text-align: center;
+    font-size: 80px;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(133, 49, 49);
+    z-index: 100;
+}
+#menu{
+    width: 260px;
+    height: 100vh;
+    background-color: rgb(158, 132, 71);
+    position: fixed;
+    left: -260px;
+    top: 0;
+    transition: all ease 760ms;
+    z-index: 110;
+}
+.font{
+    text-align: center;
+    font-size: 54px;
+    height: 64px;
+}
+#neW{
+    position: relative;
+    top: -200px;
+}
+#new_first, #new_second, #new_third{ 
+    left: 14%;
+    width: 700px;
+    height: auto;
+    background-color: rgb(213, 226, 157);
+    border-radius: 16px;
+    z-index: 100;
+}
+#new_second{
+    top:-100px
+}
+#new_third{
+    top: 0px
+}
+.new{
+    top: 200px;
+    position: absolute;
+    background-color: rgb(213, 226, 157);
+    border-radius: 16px;
+    border: 1px solid black;
+}
+.header{
+    text-align: center;
+    margin: 30px;
+    font-size: 64px;
+    background-color: rgb(231, 230, 183);
+}
+.img{
+    margin: 30px;
+    width: auto;
+    height: 200px;
+    background-color: black;
+}
+.Lorem{
+    background-color: rgb(213, 226, 157);
+    font-size: 24px;
+    margin: 30px;
+}
+.resolution{
+    position: relative;
+    background-color: rgb(143, 146, 128);
+    text-align: center;
+    font-size: 40px;
+    margin: 40px 30px;
+    border: 1px solid black;
+}
+
+/*Elections*/
+
+#State_policy{
+    background-color: rgb(98, 1, 253);
+    border: 1px solid rgb(98, 1, 253);
+}
+#mains{
+    background-color: rgb(98, 1, 253);
+}
+#president,#premier,/*#parlament*/#popularity{
+    /* background-color: rgb(98, 1, 253); */
+    position: relative;
+    width: 50%;
+    height: 65px;
+    border: 2px solid rgb(98, 1, 253);
+}
+#premier{
+    left: 50%;
+    top: -70px;
+}
+#parlament{
+    top: 120px;
+}
+#popularity{
+    width: 100%;
+    top: 120px;
+    z-index: 90;
+} 
+#parlament,#popularity{
+    border: 1px solid black;
+    background-color: rgb(143, 146, 128);
+}
+#partys{
+    z-index: 91;
+    top: 330px;
+    background-color: rgb(143, 146, 128);
+}
+.photo{
+    position: absolute;
+    width: 140px;height: 140px;
+    background-color: black;
+    left: 0;
+    top: 66px;
+}
+.name,.family_name{
+    position: absolute;
+    font-size: 60px;
+    left: 140px;
+    top: 69px;
+}
+.family_name{
+    top: 140px;
+}
+.canvas{
+    left: 10%;
+    top: 10px;
+}
+.party{
+    position: absolute;
+    width: 50%;
+    height: 260px;
+    border: 1px solid black;
+}
+.party2,.party4,.party6{
+    left: 50%;
+}
+.party3,.party4{
+    top: 323px
+}
+.party5,.party6{
+    top: 582px
+}
+.name_party{
+    width: 100%px;
+    height: 66px;
+}
+.worked{
+    left: 0;
+    top: 140px;
+    height: 54px;
+    width: 185px;
+    background-color:rgb(255, 255, 255);
+    font-size: 40px;
+    font-style: inherit;    
+    color:black;
+    z-index: 3;
+}
+.features{
+    left: 34%;
+    top: 87px;
+    height: 53px;
+    width: 324px;
+    position: relative;
+    background-color:rgb(82, 0, 0);
+    z-index: 2;
+}
+.feature{
+    height: 44px;width: 44px;
+    background-color:rgb(165, 125, 125);
+}
+
+/*budget*/
+#budget{
+    text-align: center;
+}
+.tax,.spending{
+    position: absolute;
+    width: 50%;
+    height: 200px;
+}
+.spending{
+    left: 50%;
+}
+#poor_tax,#education_spending{
+    top: 100px;
+}
+#middle_tax,#control_spending{
+    top: 320px;
+}
+#rich_tax,#social_spending{
+    top: 540px;
+}
+#duties_tax,#military_spending{
+    top: 760px;
+}
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 100%;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -14px;
+}
+#balance_text{
+    top: 900px;
+}
