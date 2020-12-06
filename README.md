@@ -1,4 +1,4 @@
-# Snake
+# Tambalik
 
-## How to play?
+## https://diametrfq.github.io/Tambalik/index.html
 
