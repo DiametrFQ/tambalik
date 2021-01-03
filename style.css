@@ -107,22 +107,22 @@
 #mains{
     background-color: rgb(98, 1, 253);
 }
-#president,#premier,/*#parlament*/#popularity{
-    /* background-color: rgb(98, 1, 253); */
+#president,#premier,#parlament,#popularity{
+    background-color: rgb(98, 1, 253);
     position: relative;
     width: 50%;
     height: 65px;
     border: 2px solid rgb(98, 1, 253);
 }
-#premier{
+#premier,#popularity{
     left: 50%;
-    top: -70px;
-}
-#parlament{
-    top: 120px;
+    top: -70px
 }
 #popularity{
-    width: 100%;
+    top: 53px;
+}
+#parlament{
+    width: 50%;
     top: 120px;
     z-index: 90;
 } 
@@ -131,6 +131,7 @@
     background-color: rgb(143, 146, 128);
 }
 #partys{
+    width: 100%;
     z-index: 91;
     top: 330px;
     background-color: rgb(143, 146, 128);
