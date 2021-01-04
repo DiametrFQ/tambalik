@@ -79,10 +79,12 @@
     background-color: rgb(231, 230, 183);
 }
 .img{
-    margin: 30px;
-    width: auto;
-    height: 200px;
+    /* margin: 0 170px; */
+    text-align: justify;
     background-color: black;
+}
+center{
+    background-color: rgb(213, 226, 157);
 }
 .Lorem{
     background-color: rgb(213, 226, 157);

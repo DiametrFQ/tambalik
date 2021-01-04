@@ -23,12 +23,12 @@ function obj(color, politica, pop, par ){return {
 }}
 
 let pol = [
-	mon = obj("rgb(98, 1, 253)",   "monarchist",  800, 800), 
-	lib = obj("rgb(190, 151, 25)", "liberal",     230, 90), 
-	dem = obj("rgb(35, 171, 250)", "democratic",  169, 150), 
-	nat = obj("rgb(0, 4, 255)",    "nationalist", 1000, 410), 
-	grn = obj("rgb(36, 214, 19)",  "green",       200, 10), 
-	soc = obj("rgb(221, 17, 17)",  "socialist",   400, 10)
+	mon = obj("#6201FD", "monarchist",  800, 800), 
+	lib = obj("#BE9719", "liberal",     230, 90), 
+	dem = obj("#23ABFA", "democratic",  169, 150), 
+	nat = obj("#0004FF", "nationalist", 1000, 410), 
+	grn = obj("#24D613", "green",       200, 10), 
+	soc = obj("#DD1111", "socialist",   400, 10)
 ]
 
 const mains = document.querySelector('#mains')
@@ -290,7 +290,7 @@ const gameEvents = [
 		newF.style.backgroundColor = '#D5E29D';
 		document.querySelector('.new.first').insertAdjacentHTML('beforeend', `
 			<header class="header">Центральный квартал</header>
-			<div class="img"></div>
+			<center><img class="img" src="https://cdn.maximonline.ru/36/f2/63/36f2637ef294455f33494ac1ee827aff/583x417_0xac120005_3457988091527733829.jpg" alt=""></center>
 			<div class="Lorem first">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit.
 				Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
@@ -333,19 +333,12 @@ const gameEvents = [
 		newF.style.backgroundColor = '#D5E29D';
 		document.querySelector('.new.first').insertAdjacentHTML('beforeend', `
 			<header class="header">Центральный квартал</header>
-			<div class="img"></div>
+			<center><img class="img" src="https://cdn22.img.ria.ru/images/155775/02/1557750258_1:0:1000:562_600x0_80_0_0_9d1b638a93e7294df563e0f1f096a4c1.png" alt=""></center>
 			<div class="Lorem first">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
-				minima perspiciatis in eligendi quisquam culpa, sed,
-				doloremque blanditiis distinctio sunt deleniti placeat?
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
-				minima perspiciatis in eligendi quisquam culpa, sed,
-				doloremque blanditiis distinctio sunt deleniti placeat?
+				Время выборов! Настало время выяснить на кого же теперь возлагаются надежды и трудности правления страной?
 			</div>
 			<div class="resolution first" id="oo">Провести выборы!</div>
-			<div class="resolution second" id="os">Оппозиция должна выйграть!</div>
+			<div class="resolution second" id="os">Оппозиция должна выиграть!</div>
 			<div class="resolution third" id="ot">Пусть все останется как есть...</div>
 		`)
 		document.querySelector('#oo').onclick = () => {
@@ -371,15 +364,17 @@ const gameEvents = [
 		newF.style.height = 'auto';
 		newF.style.backgroundColor = '#D5E29D';
 		const imposter = pol[randoM(pol.length)]
+		if(imposter === pol[0]) imposter = pol[1]
 		document.querySelector('.new.first').insertAdjacentHTML('beforeend', `
 			<header class="header">Высшая гласность</header>
-			<div class="img"></div>
+			<center><img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT4f0GbYI-MnOY5H0yvErAdWdcUkOR7z3jmA&usqp=CAU" alt=""></center>
 			<div class="Lorem first">
-				Сегодня стало известно о гибели нашего лидера <span color="${pol[0].color}">${pol[0].name}</span> 
-				<span color="${pol[0].color}">${pol[0].fName}</span> неизвестным террористом.
-				Детективы раследуют это дело и подзревают в этом партию 
-				${imposter.politica} и их лидера ${imposter.name} 
-				${imposter.fName}. Будем надеятся что это не такю
+				Сегодня стало известно о гибели нашего лидера 
+				<span bgcolor="${pol[0].color}">${pol[0].name}${pol[0].fName}</span> 
+				неизвестным террористом. Детективы раследуют это дело и подозревают в этом партию 
+				<span bgcolor="${pol[0].color}">${imposter.politica}</span> и их лидера 
+				<span bgcolor="${pol[0].color}">${imposter.name} ${imposter.fName}</span>. 
+				Будем надеятся что это не так.
 			</div>
 			<div class="resolution first" id="oo">О боже!</div>
 		`)
@@ -410,7 +405,7 @@ minsN1 =()=>{
 
 	document.querySelector('#button_for_new_move').onclick = function() {
 		menuHide();
-		gameEvents[ randoM( gameEvents.length-1)]()
+		gameEvents[ randoM( gameEvents.length)]()
 
 		this.innerHTML++;
 		budget.innerHTML = '';
