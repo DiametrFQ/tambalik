@@ -308,19 +308,19 @@ const gameEvents = [
 		document.querySelector('#oo').onclick = () => {
 			minsN1();
 			sortPop();
-			pol[0].pop *= randoM(2)++;
+			pol[0].pop *= Math.random() + 1;
 			sortPop();
 		}
 		document.querySelector('#os').onclick = () => {
 			minsN1();
 			sortPop();
-			pol[1].pop *= randoM(2)++;
+			pol[1].pop *= Math.random() + 1;
 			sortPop();
 		}
 		document.querySelector('#ot').onclick = () => {
 			minsN1();
 			sortPop();
-			pol[5].pop *= randoM(2)++;
+			pol[5].pop *= Math.random() + 1;
 			sortPop();
 		}
 		document.querySelector('#button_for_new_move').onclick = null;
@@ -354,12 +354,12 @@ const gameEvents = [
 		}
 		document.querySelector('#os').onclick = () => {
 			minsN1()
-			pol[1].par*= randoM(1)++
+			pol[1].par*= Math.random() + 1
 			newPar()
 		}
 		document.querySelector('#ot').onclick = () => {
 			minsN1()
-			pol[2].par*= randoM(2)++
+			pol[2].par*= Math.random() + 2
 			newPar()
 		}
 		document.querySelector('#button_for_new_move').onclick = null;
