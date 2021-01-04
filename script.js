@@ -3,13 +3,13 @@ let RaFam =  ['Toti','Dosy','Dores','Varmi','Glazgo','Miller','Sinossu'];//Rando
 let RaWork = ['Военный','Юрист','Охраник','Директор','Циркач','Министр','Бомж'];//Random worked
 let plusMain=1, plusOpposition=1;
 
-let feature = [
-	bluBlood = `<img class="feature" id="feature1_leader_socialist1" src="https://cdn.streamelements.com/uploads/40c4495d-37f9-46dc-9598-8e977f20982b.jpg"></img>`,
-	popular = `<img class="feature" id="feature1_leader_socialist1" src="https://clipart-best.com/img/star/star-clip-art-2.png"></img>`,
-	stupid = `<img class="feature" id="feature1_leader_socialist1" src="https://caricatura.ru/gf-img/1058091/img-0.__GF_800x.jpeg"></img>`,
-	angry = `<img class="feature" id="feature1_leader_socialist1" src="https://i.pinimg.com/originals/58/05/87/5805877a4838014815f6217b53fba568.jpg"></img>`,
-	lazy = `<img class="feature" id="feature1_leader_socialist1" src="https://www.clearviewip.com/app/uploads/2016/11/Sloth.jpg"></img>`,
-];
+// let feature = [
+// 	bluBlood = `<img class="feature" id="feature1_leader_socialist1" src="https://cdn.streamelements.com/uploads/40c4495d-37f9-46dc-9598-8e977f20982b.jpg"></img>`,
+// 	popular = `<img class="feature" id="feature1_leader_socialist1" src="https://clipart-best.com/img/star/star-clip-art-2.png"></img>`,
+// 	stupid = `<img class="feature" id="feature1_leader_socialist1" src="https://caricatura.ru/gf-img/1058091/img-0.__GF_800x.jpeg"></img>`,
+// 	angry = `<img class="feature" id="feature1_leader_socialist1" src="https://i.pinimg.com/originals/58/05/87/5805877a4838014815f6217b53fba568.jpg"></img>`,
+// 	lazy = `<img class="feature" id="feature1_leader_socialist1" src="https://www.clearviewip.com/app/uploads/2016/11/Sloth.jpg"></img>`,
+// ];
 
 function obj(color, politica, pop, par ){return {
 	color,
@@ -21,20 +21,17 @@ function obj(color, politica, pop, par ){return {
 }}
 
 let pol = [
-	mon = obj("rgb(98, 1, 253)", "monarchist", 800, 800), 
-	lib = obj("rgb(190, 151, 25)", "liberal", 230, 90), 
-	dem = obj("rgb(35, 171, 250)", "democratic", 169, 150), 
-	nat = obj("rgb(0, 4, 255)", "nationalist", 1000, 410), 
-	grn = obj("rgb(36, 214, 19)", "green", 200, 10), 
-	soc = obj("rgb(221, 17, 17)", "socialist", 400, 10)
+	mon = obj("rgb(98, 1, 253)",   "monarchist",  800, 800), 
+	lib = obj("rgb(190, 151, 25)", "liberal",     230, 90), 
+	dem = obj("rgb(35, 171, 250)", "democratic",  169, 150), 
+	nat = obj("rgb(0, 4, 255)",    "nationalist", 1000, 410), 
+	grn = obj("rgb(36, 214, 19)",  "green",       200, 10), 
+	soc = obj("rgb(221, 17, 17)",  "socialist",   400, 10)
 ]
 
 const mains = document.querySelector('#mains');
 const budget = document.querySelector('#budget');
 const pi = Math.PI;
-const xCan = 100;
-const yCan = 100;
-const rdsCan = 95;
 
 let openPar = true
 let save
@@ -47,8 +44,6 @@ function sortPar(){
 			save = pol[i];
 			pol[i] = pol[i+1];
 			pol[i+1] = save;
-			pol[0].par /= plusMain
-			pol[1].par /= plusOpposition
 			sortPar();
 		}
 	}
@@ -59,25 +54,31 @@ function sortPop(){
 			save = pol[i];
 			pol[i] = pol[i+1];
 			pol[i+1] = save;
-			pol[0].pop /= plusMain
-			pol[1].pop /= plusOpposition
 			sortPop();
 		}
 	}
 }
 
-function circle(ctx, x, y, rds, crdnt){
+function circle(ctx, crdnt){
 	for(i = 0; i < pol.length; i++){
 		ctx.beginPath();
 		console.log(pol[i].color);
 		ctx.strokeStyle = pol[i].color;
 		ctx.fillStyle = pol[i].color;
-		ctx.moveTo(x, y);
-		ctx.arc(x, y, rds, crdnt[i], crdnt[i+1], true);
-		ctx.lineTo(x, y);
+		ctx.moveTo(100, 100);
+		ctx.arc(100, 100, 95, crdnt[i], crdnt[i+1], true);
+		ctx.lineTo(100, 100);
 		ctx.fill();
 	}
 }
+function newPar(){
+	sortPar()
+	for(let i = 0; i < pol.length; i++) pol[i].par = pol[i].pop / (i+1)
+	sortPar()
+}
+newPar()
+
+
 function canPar(){
 	document.querySelector('#parlament').innerHTML += `<canvas  class="canvas" id="canvas_parlament" width='400px' height='200px'></canvas>`;
 	const canPa = document.querySelector('#canvas_parlament');
@@ -92,7 +93,7 @@ function canPar(){
 	sixthCrdntPar  = 0;
 	const crdntPar = [0,firstCrdntPar,secCrdntPar,thirdCrdntPar,fourthCrdntPar,fifthCrdntPar,sixthCrdntPar,0];
 
-	circle(ctxPa, 100, 100, 95, crdntPar)
+	circle(ctxPa, crdntPar)
 }
 function canPop(){
 	document.querySelector('#popularity').innerHTML += `<canvas class="canvas" id="canvas_popularity" width='400px' height='200px'></canvas>`;
@@ -108,7 +109,7 @@ function canPop(){
 	sixthCrdntPop  = 0;
 	const crdntPop = [0,firstCrdntPop,secCrdntPop,thirdCrdntPop,fourthCrdntPop,fifthCrdntPop,sixthCrdntPop,0];
 
-	circle(ctxPo, 100, 100, 95, crdntPop)
+	circle(ctxPo, crdntPop)
 }
 
 function NewHum(){
@@ -138,12 +139,8 @@ document.querySelector('#mains_botton').onclick = () =>{
 	sortPop()
 	canPop()
 
-	pol[0].par*=plusMain
-	pol[1].par*=plusOpposition
 	sortPar()
 	canPar()
-	pol[0].par/=plusMain
-	pol[1].par/=plusOpposition
 
 	openPar = false
 	plusMain = 1;
@@ -167,7 +164,7 @@ document.querySelector('#mains_botton').onclick = () =>{
 	//function keep(){localStorage.getItem()}
 
 	for(i=0; i < pol.length; i++){
-		if (localStorage.getItem(`namLead_${pol[i].politica}`)===null||localStorage.getItem(`fNamLead_${pol[i].politica}`)===null||localStorage.getItem(`workLead_${pol[i].politica}`)===null){
+		if (pol[i].name===null||pol[i].fName===null||pol[i].work===null){
 			NewHum()
 			pol[i].name = name
 			pol[i].fName = fam
@@ -221,7 +218,8 @@ document.querySelector('#mains_botton').onclick = () =>{
 
 
 document.querySelector('#budget_botton').onclick = () =>{
-	mains.innerHTML = '';
+	mains.innerHTML = ''
+	budget.innerHTML = ''
 	budget.insertAdjacentHTML('beforeend',`
 		<div class="tax font">Доход</div>
 		<div class="tax" id="poor_tax"></div>
@@ -302,16 +300,19 @@ function test(){
 	`)
 	document.querySelector('#oo').onclick = () => {
 		minsN1();
+		sortPop();
 		pol[0].pop+=1000;
 		sortPop();
 	}
 	document.querySelector('#os').onclick = () => {
 		minsN1();
+		sortPop();
 		pol[1].pop+=6000;
 		sortPop();
 	}
 	document.querySelector('#ot').onclick = () => {
 		minsN1();
+		sortPop();
 		pol[5].pop+=3000;
 		sortPop();
 	}
@@ -341,18 +342,18 @@ function test2(){
 		<div class="resolution third" id="ot">Пусть все останется как есть...</div>
 	`)
 	document.querySelector('#oo').onclick = () => {
-		minsN1();
-		openPar = true
+		newPar()
+		minsN1()
 	}
 	document.querySelector('#os').onclick = () => {
-		minsN1();
-		plusOpposition=1.2;
-		openPar = true
+		minsN1()
+		pol[1].par *= 1.2
+		newPar()
 	}
 	document.querySelector('#ot').onclick = () => {
-		minsN1();
-		plusMain=1.5;
-		openPar = true
+		minsN1()
+		plusMain=1.5
+		newPar()
 	}
 	document.querySelector('#button_for_new_move').onclick = null;
 }
