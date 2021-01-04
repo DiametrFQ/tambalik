@@ -183,7 +183,6 @@ document.querySelector('#mains_botton').onclick = () =>{
 			pol[i].fName = localStorage.getItem(`fNamLead_${pol[i].politica}`)
 			pol[i].work = localStorage.getItem(`workLead_${pol[i].politica}`)
 		}
-		console.log(name,fam,work)
 		document.querySelector(`.party${i+1}`).insertAdjacentHTML('beforeend',`
 			<div class="name_party"  id="name_party_${pol[i].politica}styly" style="background-color:${pol[i].color}">${pol[i].politica}</div>
 			<div class="photo"       id="photo_leader_${pol[i].politica}"></div>
