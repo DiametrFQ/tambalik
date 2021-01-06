@@ -1,5 +1,5 @@
 let RaName = ['Filip','Pit','Dolores','William','Boris','Mary','Tomas','Lary'];//randoM Name
-let RaFam =  ['Toti','Dosy','Dores','Varmi','Glazgo','Miller','Sinossu'];//randoM Famile Name
+let RaFam =  ['Toti','Dosy','Dores','Varmi','Glazgo','Miller','Sinossu', 'Roll', 'Enderson', 'Walker', ''];//randoM Famile Name
 let RaWork = ['Военный','Юрист','Охраник','Директор','Циркач','Министр','Бомж'];//randoM worked
 
 function menuShow(){document.querySelector('#menu').style.left = 0}
@@ -12,7 +12,7 @@ function menuHide(){document.querySelector('#menu').style.left = '-260px'}
 // 	lazy = `<img class="feature" id="feature1_leader_socialist1" src="https://www.clearviewip.com/app/uploads/2016/11/Sloth.jpg"></img>`,
 // ];
 
-function obj(color, politica, pop, par ){return {
+function obj(color, politica, pop, par){return {
 	color,
 	politica, 
 	name: localStorage.getItem(`namLead_${politica}`), 
@@ -84,13 +84,14 @@ function canPar(){
 	const canPa = document.querySelector('#canvas_parlament');
 	const ctxPa = canPa.getContext('2d');
 
-	sumPar = pol[0].par + pol[1].par + pol[2].par + pol[3].par + pol[4].par + pol[5].par
+	let sumPar = 0
+	for(let i = 0; i < pol.length; i++) sumPar += pol[i].par
 
 	const crdntPar = [0,0,0,0,0,0,0,0]
 
-	for(i = 1; i < 6; i++){
+	for(let i = 1; i < 6; i++){
 		let summ = 0
-		for(k = 0; k < i; k++)summ += pol[k].par
+		for(let k = 0; k < i; k++)summ += pol[k].par
 		crdntPar[i] = 2*pi*( 1-(summ / sumPar))
 	}
 	circle(ctxPa, crdntPar)
@@ -274,116 +275,89 @@ document.querySelector('#budget_botton').onclick = () =>{
 		<div   class="amount"  id="amount_military_spending">50%</div>
 	`)
 }
+checkResolutionSecond = (resolutionSecond) =>{return (resolutionSecond !== null) ? `<div class="resolution third" id="os">${resolutionSecond}</div>` : ``}
+checkResolutionThird = (resolutionThird) =>{return (resolutionThird !== null) ? `<div class="resolution third" id="ot">${resolutionThird}</div>` : ``}
 
-// document.querySelector('#so').onclick = () => minsN2();
-// document.querySelector('#ss').onclick = () => minsN2();
-// document.querySelector('#st').onclick = () => minsN2();
-// document.querySelector('#to').onclick = () => minsN3();
-// document.querySelector('#ts').onclick = () => minsN3();
-// document.querySelector('#tt').onclick = () => minsN3();
+html = (Newspaper, src, strangeLorem, resolutionFirst, resolutionSecond = null, resolutionThird = null) =>{
+	document.querySelector('#button_for_new_move').onclick = null;
+	const newF = document.querySelector('#new_first')
+	newF.innerHTML += `<div class="new first"></div>`
+	newF.style.width = 700+'px'
+	newF.style.height = 'auto'
+	newF.style.backgroundColor = '#D5E29D'
+	document.querySelector('.new.first').insertAdjacentHTML('beforeend',`
+		<header class="header">${Newspaper}</header>
+		<center><img class="img" src="${src}" alt=""></center>
+		<div class="Lorem first">${strangeLorem}</div>
+		<div class="resolution first" id="oo">${resolutionFirst}</div>
+		${checkResolutionSecond(resolutionSecond)}
+		${checkResolutionThird(resolutionThird)}
+	`)
+}
 const gameEvents = [
 	test = () =>{		
-		const newF = document.querySelector('#new_first');
-		newF.innerHTML += `<div class="new first"></div>`;
-		newF.style.width = 700+'px';
-		newF.style.height = 'auto';
-		newF.style.backgroundColor = '#D5E29D';
-		document.querySelector('.new.first').insertAdjacentHTML('beforeend', `
-			<header class="header">Центральный квартал</header>
-			<center><img class="img" src="https://cdn.maximonline.ru/36/f2/63/36f2637ef294455f33494ac1ee827aff/583x417_0xac120005_3457988091527733829.jpg" alt=""></center>
-			<div class="Lorem first">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
-				minima perspiciatis in eligendi quisquam culpa, sed,
-				doloremque blanditiis distinctio sunt deleniti placeat?
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
-				minima perspiciatis in eligendi quisquam culpa, sed,
-				doloremque blanditiis distinctio sunt deleniti placeat?
-			</div>
-			<div class="resolution first" id="oo">Поддержать правящую партию</div>
-			<div class="resolution second" id="os">Поддержать оппозиционную партию</div>
-			<div class="resolution third" id="ot">Поддержать слабую партию</div>
-		`)
-		document.querySelector('#oo').onclick = () => {
+		html(
+			'Центральный квартал',
+			'https://cdn.maximonline.ru/36/f2/63/36f2637ef294455f33494ac1ee827aff/583x417_0xac120005_3457988091527733829.jpg', 
+			`Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			 Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
+			 minima perspiciatis in eligendi quisquam culpa, sed,
+			 doloremque blanditiis distinctio sunt deleniti placeat?
+			 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			 Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
+			 minima perspiciatis in eligendi quisquam culpa, sed,
+			 doloremque blanditiis distinctio sunt deleniti placeat?`, 
+			'Поддержать правящую партию', 
+			'Поддержать оппозиционную партию', 
+			'Поддержать слабую партию'
+		)
+		RepetitionOfAnswers = (i, plus) =>{
 			minsN1();
-			sortPop();
-			pol[0].pop *= Math.random() + 1;
+			sortPar();
+			pol[i].pop *= Math.random() + plus;
 			sortPop();
 		}
-		document.querySelector('#os').onclick = () => {
-			minsN1();
-			sortPop();
-			pol[1].pop *= Math.random() + 1;
-			sortPop();
-		}
-		document.querySelector('#ot').onclick = () => {
-			minsN1();
-			sortPop();
-			pol[5].pop *= Math.random() + 1;
-			sortPop();
-		}
-		document.querySelector('#button_for_new_move').onclick = null;
+		document.querySelector('#oo').onclick = () => RepetitionOfAnswers(0, 1)
+		document.querySelector('#os').onclick = () => RepetitionOfAnswers(1, 1.2)
+		document.querySelector('#ot').onclick = () => RepetitionOfAnswers(5, 0.7)
 	},
 	test2 = () =>{		
-		const newF = document.querySelector('#new_first');
-		newF.innerHTML += `<div class="new first"></div>`;
-		newF.style.width = 700+'px';
-		newF.style.height = 'auto';
-		newF.style.backgroundColor = '#D5E29D';
-		document.querySelector('.new.first').insertAdjacentHTML('beforeend', `
-			<header class="header">Центральный квартал</header>
-			<center><img class="img" src="https://cdn22.img.ria.ru/images/155775/02/1557750258_1:0:1000:562_600x0_80_0_0_9d1b638a93e7294df563e0f1f096a4c1.png" alt=""></center>
-			<div class="Lorem first">
-				Время выборов! Настало время выяснить на кого же теперь возлагаются надежды и трудности правления страной?
-			</div>
-			<div class="resolution first" id="oo">Провести выборы!</div>
-			<div class="resolution second" id="os">Оппозиция должна выиграть!</div>
-			<div class="resolution third" id="ot">Пусть все останется как есть...</div>
-		`)
-		document.querySelector('#oo').onclick = () => {
+		html(
+			'Центральный квартал',
+			'https://cdn22.img.ria.ru/images/155775/02/1557750258_1:0:1000:562_600x0_80_0_0_9d1b638a93e7294df563e0f1f096a4c1.png', 
+			`Время выборов! Настало время выяснить на кого же теперь возлагаются надежды и трудности правления страной?`, 
+			'Провести выборы!', 
+			'Оппозиция должна выиграть!', 
+			'Пусть все останется как есть...'
+		)
+		RepetitionOfAnswers = (i, plus = null) =>{
+			if(plus !== null) pol[i].par *= Math.random() + plus
 			newPar()
 			minsN1()
 		}
-		document.querySelector('#os').onclick = () => {
-			minsN1()
-			pol[1].par*= Math.random() + 1
-			newPar()
-		}
-		document.querySelector('#ot').onclick = () => {
-			minsN1()
-			pol[2].par*= Math.random() + 2
-			newPar()
-		}
-		document.querySelector('#button_for_new_move').onclick = null;
+		document.querySelector('#oo').onclick = () => RepetitionOfAnswers()
+		document.querySelector('#os').onclick = () => RepetitionOfAnswers(1, 1)
+		document.querySelector('#ot').onclick = () => RepetitionOfAnswers(2, 2)
 	},
 	test3 = () =>{		
-		const newF = document.querySelector('#new_first');
-		newF.innerHTML += `<div class="new first"></div>`;
-		newF.style.width = 700+'px';
-		newF.style.height = 'auto';
-		newF.style.backgroundColor = '#D5E29D';
-		const imposter = pol[randoM(pol.length)]
-		if(imposter === pol[0]) imposter = pol[1]
-		document.querySelector('.new.first').insertAdjacentHTML('beforeend', `
-			<header class="header">Высшая гласность</header>
-			<center><img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT4f0GbYI-MnOY5H0yvErAdWdcUkOR7z3jmA&usqp=CAU" alt=""></center>
-			<div class="Lorem first">
-				Сегодня стало известно о гибели нашего лидера 
-				<span bgcolor="${pol[0].color}">${pol[0].name}${pol[0].fName}</span> 
-				неизвестным террористом. Детективы раследуют это дело и подозревают в этом партию 
-				<span bgcolor="${pol[0].color}">${imposter.politica}</span> и их лидера 
-				<span bgcolor="${pol[0].color}">${imposter.name} ${imposter.fName}</span>. 
-				Будем надеятся что это не так.
-			</div>
-			<div class="resolution first" id="oo">О боже!</div>
-		`)
+		html(
+			'Высшая гласность',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT4f0GbYI-MnOY5H0yvErAdWdcUkOR7z3jmA&usqp=CAU', 
+			`Сегодня стало известно о гибели нашего лидера 
+			 <span bgcolor="${pol[0].color}">${pol[0].name}${pol[0].fName}</span> 
+			 неизвестным террористом. Детективы раследуют это дело и подозревают в этом партию 
+			 <span bgcolor="${pol[0].color}">${imposter.politica}</span> и их лидера 
+			 <span bgcolor="${pol[0].color}">${imposter.name} ${imposter.fName}</span>. 
+			 Будем надеятся что это не так.`, 
+			'О боже!'
+		)
 		document.querySelector('#oo').onclick = () => {
 			NewHum()
-			pol[0].pop /= 4
+			pol[0].pop *= 1.1
+			imposter.pop /= 4
 			pol[0].name = name
 			localStorage.setItem(`namLead_${pol[0].politica}`, name)
-			if(pol[0].politica !== "monarchist"){
+			if(pol[0].politica !== 'monarchist'){
 				pol[0].fName = fam
 				pol[0].work = work
 				localStorage.setItem(`fNamLead_${pol[0].politica}`,	fam)
@@ -395,7 +369,7 @@ const gameEvents = [
 	},
 ]
 
-minsN1 =()=>{
+minsN1 = () =>{
 	const newF = document.querySelector('#new_first');
 	newF.innerHTML = null;
 	newF.style.width = 0;
@@ -407,20 +381,26 @@ minsN1 =()=>{
 		menuHide();
 		gameEvents[ randoM( gameEvents.length)]()
 
-		this.innerHTML++;
-		budget.innerHTML = '';
-		mains.innerHTML = ``;
+		this.innerHTML++
+		budget.innerHTML = ''
+		mains.innerHTML = ''
 	}
 }
-minsN2 =() => {
-	const ns = document.querySelector('#new_second')
-	ns.innerHTML = null;
-	ns.style.width = 0;
-	ns.style.height = 0;
-}
-minsN3 =() => {
-	const nt = document.querySelector('#new_second')
-	nt.innerHTML = null;
-	nt.style.width = 0;
-	nt.style.height = 0;
-}
+// minsN2 = () => {
+// 	const ns = document.querySelector('#new_second')
+// 	ns.innerHTML = null
+// 	ns.style.width = 0
+// 	ns.style.height = 0
+// }
+// minsN3 = () => {
+// 	const nt = document.querySelector('#new_second')
+// 	nt.innerHTML = null
+// 	nt.style.width = 0
+// 	nt.style.height = 0
+// }
+// document.querySelector('#so').onclick = () => minsN2();
+// document.querySelector('#ss').onclick = () => minsN2();
+// document.querySelector('#st').onclick = () => minsN2();
+// document.querySelector('#to').onclick = () => minsN3();
+// document.querySelector('#ts').onclick = () => minsN3();
+// document.querySelector('#tt').onclick = () => minsN3();
