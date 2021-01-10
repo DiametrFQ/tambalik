@@ -102,19 +102,10 @@ center{
 
 /*Elections*/
 
-#State_policy{
-    background-color: rgb(98, 1, 253);
-    border: 1px solid rgb(98, 1, 253);
-}
-#mains{
-    background-color: rgb(98, 1, 253);
-}
 #president,#premier,#parlament,#popularity{
-    background-color: rgb(98, 1, 253);
     position: relative;
     width: 50%;
     height: 65px;
-    border: 2px solid rgb(98, 1, 253);
 }
 #premier,#popularity{
     left: 50%;

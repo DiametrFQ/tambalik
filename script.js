@@ -124,14 +124,13 @@ document.querySelector('#oo').onclick = () => minsN1();
 document.querySelector('#os').onclick = () => minsN1();
 document.querySelector('#ot').onclick = () => minsN1();
 
-
 document.querySelector('#mains_botton').onclick = () =>{
 	menuHide();
 	budget.innerHTML = ''
 	mains.innerHTML = ''
-	mains.insertAdjacentHTML('beforeend', `
-		<header class="font" id="State_policy">Абсолютная монархия</header>
-		<div class="font" id="president">Король</div>
+	mains.insertAdjacentHTML("afterbegin", `
+		<header class="font" id="State_policy">Парламенская республика</header>
+		<div class="font" id="president">Президент</div>
 		<div class="font" id="premier">Премьер</div>
 		<div class="font" id="parlament">Парламент</div>
 		<div class="font" id="popularity">Популярность</div>
@@ -141,16 +140,30 @@ document.querySelector('#mains_botton').onclick = () =>{
 	for(i = 0; i < 7; i++)partys.innerHTML += `<div class="party party${i}"></div>`
 	sortPop()
 	canPop()
-
 	sortPar()
 	canPar()
-
-	openPar = false
-	plusMain = 1;
-	plusOpposition = 1
-
-
-
+	document.querySelector('#State_policy').style.backgroundColor = pol[0].color
+	if(pol[0].politica === "monarchist") document.querySelector('#president').innerHTML = "Король"
+	const premier = document.querySelector('#premier')
+	if(canPar()/pi > 1){
+		if(pol[0].politica === "monarchist") document.querySelector('#State_policy').innerHTML = "Конституционная монархия"
+		else document.querySelector('#State_policy').innerHTML = "Парламенская республика"
+		premier.style.backgroundColor = pol[1].color
+		premier.insertAdjacentHTML('beforeend', `
+			<div  class="photo"       id="photo_premier">               	   </div>
+			<span class="name"        id="name_premier">         ${pol[1].name}</span>
+			<span class="family_name" id="family_name_premier"> ${pol[1].fName}</span>
+			<div  class="worked"      id="worked_leader_premier">${pol[1].work}</div>
+			<div  class="features"    id="features_leader_premier">			   </div>
+	`)}
+	else{
+		if(pol[0].politica === "monarchist") document.querySelector('#State_policy').innerHTML = "Абсолютная монархия"
+		else document.querySelector('#State_policy').innerHTML = "Президентская республика"
+		premier.insertAdjacentHTML('beforeend', `
+			<div  class="photo" id="photo_premier"></div>
+			<span class="name"id="name__premier">Запрещён</span>
+			<span class="family_name"id="family_name_premier"></span>
+	`)}
 	// document.querySelector('#features_leader_monarchist').innerHTML += `<img class="feature " id="feature1_leader_monarchist1" src="https://cdn.streamelements.com/uploads/40c4495d-37f9-46dc-9598-8e977f20982b.jpg"></img>`;
 	// document.querySelector('#features_leader_monarchist').innerHTML += `<img class="feature " id="feature1_leader_monarchist2" src="https://cdn.streamelements.com/uploads/40c4495d-37f9-46dc-9598-8e977f20982b.jpg"></img>`;
 	// document.querySelector('#features_leader_monarchist').innerHTML += `<img class="feature " id="feature1_leader_monarchist3" src="https://cdn.streamelements.com/uploads/40c4495d-37f9-46dc-9598-8e977f20982b.jpg"></img>`;
@@ -206,23 +219,6 @@ document.querySelector('#mains_botton').onclick = () =>{
 		<div  class="worked" id="worked_leader_president">${pol[0].work}</div>
 		<div  class="features" id="features_leader_president"></div>
 	`)
-
-	const premier = document.querySelector('#premier');
-	if(canPar()/pi > 1){
-		premier.style.backgroundColor = pol[1].color;
-		premier.insertAdjacentHTML('beforeend', `
-			<div  class="photo"       id="photo_premier">               	   </div>
-			<span class="name"        id="name_premier">         ${pol[1].name}</span>
-			<span class="family_name" id="family_name_premier"> ${pol[1].fName}</span>
-			<div  class="worked"      id="worked_leader_premier">${pol[1].work}</div>
-			<div  class="features"    id="features_leader_premier">			   </div>
-	`)}
-	else{
-		premier.insertAdjacentHTML('beforeend', `
-			<div  class="photo" id="photo_premier"></div>
-			<span class="name"id="name__premier">Запрещён</span>
-			<span class="family_name"id="family_name_premier"></span>
-	`)}
 }
 
 
@@ -333,6 +329,8 @@ const gameEvents = [
 		document.querySelector('#ot').onclick = () => RepetitionOfAnswers(2, 2)
 	},
 	test3 = () =>{		
+		let imposter = pol[randoM(pol.length)]
+		if(imposter === pol[0])imposter = pol[1]
 		html(
 			'Высшая гласность',
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT4f0GbYI-MnOY5H0yvErAdWdcUkOR7z3jmA&usqp=CAU', 
