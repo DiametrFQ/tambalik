@@ -1,4 +1,4 @@
 # Tambalik
 
-## https://diametrfq.github.io/Tambalik/inner.html
+## https://diametrfq.github.io/Tambalik
 
