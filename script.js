@@ -299,14 +299,7 @@ const gameEvents = [
 		html(
 			'Центральный квартал',
 			'https://cdn.maximonline.ru/36/f2/63/36f2637ef294455f33494ac1ee827aff/583x417_0xac120005_3457988091527733829.jpg', 
-			`Lorem ipsum dolor sit amet consectetur adipisicing elit.
-			 Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
-			 minima perspiciatis in eligendi quisquam culpa, sed,
-			 doloremque blanditiis distinctio sunt deleniti placeat?
-			 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-			 Sunt dolor ipsam doloribus quas. Rerum eaque ex dignissimos,
-			 minima perspiciatis in eligendi quisquam culpa, sed,
-			 doloremque blanditiis distinctio sunt deleniti placeat?`, 
+			`Политические действия принимают новую форму под которую нам нужно перестраиваться, если мы это конечно хотим...`, 
 			'Поддержать правящую партию', 
 			'Поддержать оппозиционную партию', 
 			'Поддержать слабую партию'
@@ -345,7 +338,7 @@ const gameEvents = [
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT4f0GbYI-MnOY5H0yvErAdWdcUkOR7z3jmA&usqp=CAU', 
 			`Сегодня стало известно о гибели нашего лидера 
 			 <span bgcolor="${pol[0].color}">${pol[0].name}${pol[0].fName}</span> 
-			 неизвестным террористом. Детективы раследуют это дело и подозревают в этом партию 
+			 неизвестным террористом. Детективы расследуют это дело и подозревают в этом партию 
 			 <span bgcolor="${pol[0].color}">${imposter.politica}</span> и их лидера 
 			 <span bgcolor="${pol[0].color}">${imposter.name} ${imposter.fName}</span>. 
 			 Будем надеятся что это не так.`, 
