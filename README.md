@@ -1,3 +1,3 @@
 # Tambalik
 
-## https://diametrfq.github.io/Tambalik
+## https://tambalik.vercel.app/
