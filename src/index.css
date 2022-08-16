@@ -1,0 +1,8 @@
+body{
+  background: #B6A277;
+  max-width: 432px
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
