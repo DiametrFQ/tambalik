@@ -1,10 +1,6 @@
 import Answer from './Answer';
 import { IEvents } from '../../Interfaces/IEvent';
 
-// interface EventsProps extends IEvents {
-//     set: () => void
-//   }
-
 export default function Events({ Newspaper, src, content, answers}: IEvents ) {
 
     return (
@@ -19,9 +15,7 @@ export default function Events({ Newspaper, src, content, answers}: IEvents ) {
             <>{answers.map((answer, index) => (
                 <Answer
                     content={answer.content}
-                    func={ () => {
-                        if(answer.func) answer.func()
-                    }}
+                    func={ () => answer.func()}
                     key={index}
                 />
             ))}</>

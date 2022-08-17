@@ -8,17 +8,16 @@ const events: IEvents[] = [
         "content": "Приветствую! Ты играешь в Tambalik! Кнопка слева тебе даст общеполитическую информацию в стране, кнопка с права начнет новый ход где ты сможешь изменить политическую ситуацию в свою пользу, какой бы она не была. Вообще, на самом деле это все. Возможно здесь появится что-то еще если я придумаю.",
         "answers":[
             { 
-                "content": 'asd',
-                func() {
-                    console.log('42')
-                },
+                "content": 'Понятно',
+                func() {},
             },
             {
-                "content": 'qwe',
-                func() {
-                    console.log('24')
-                    partys[0].par *= 0.6
-                },
+                "content": 'Хорошо!',
+                func() {},
+            },
+            {
+                "content": 'Что?',
+                func() {},
             },
         ]
     },
@@ -47,10 +46,6 @@ const events: IEvents[] = [
                     const rbd = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min)
 
                     const summPop = partys.reduce((sum,elem) => sum + elem.pop, 0)
-
-                    console.log(rbd(2, partys.length-1))
-                    console.log(summPop)
-
 
                     partys[ rbd(2, partys.length-1) ].pop += 0.2 * summPop;
                 },

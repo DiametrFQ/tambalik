@@ -16,7 +16,7 @@ export default function PolitCanvas( {priority} :PolitCanvasProps ) {
             ? partys.map((elem) => elem.pop )! 
             : partys.map((elem) => elem.par )!
     
-            crdnt.sort((a,b)=> a>b? -1 : 1).unshift(0)
+            crdnt.sort((a,b)=> a > b? -1 : 1).unshift(0)
 
             const sumAll = crdnt.reduce((sum, elem) => sum + elem, 0);
     
