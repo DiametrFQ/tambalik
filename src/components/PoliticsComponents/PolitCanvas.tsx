@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import partys from "../../Data/partys";
 
 interface PolitCanvasProps {
@@ -38,7 +38,7 @@ export default function PolitCanvas( {priority} :PolitCanvasProps ) {
                 ctx.lineTo(145, 75)
                 ctx.fill()
             }) 
-            partys.sort((a,b) => a.par > b.par ? -1 : 1)
+            //partys.sort((a,b) => a.par > b.par ? -1 : 1)
         } 
     )
 

@@ -2,8 +2,12 @@ import Party from "../components/PoliticsComponents/Party";
 import PolitCanvas from "../components/PoliticsComponents/PolitCanvas";
 import partys from "../Data/partys";
 import { IParty } from "../Interfaces/IParty";
+import Function from "../components/Function";
+import { useCallback } from "react";
+
 
 export function PoliticsPage() {
+    
     return(
         <>
             <header className={`absolute ${partys[0].color} text-center text-[43px] h-[128px] w-[60%] border bord border-black left-[20%]`}>
@@ -56,8 +60,12 @@ export function PoliticsPage() {
                     <PolitCanvas priority="par"></PolitCanvas>
                     <PolitCanvas priority="pop"></PolitCanvas>
 
+                    <Function func={useCallback(()=>{
+                        partys.sort((a,b) => a.par > b.par ? -1 : 1)
+                    },[])}/>
+
                     {partys.map((party: IParty) => (
-                        <Party 
+                        <Party
                             color={`${party.color}`}
                             politica={party.politica} 
                             firstName={party.firstName} 
