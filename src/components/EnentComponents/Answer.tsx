@@ -1,10 +1,11 @@
-import { useContext} from 'react'
-import { IAnswer } from '../../Interfaces/IAnswer';
-import { EventContext } from '../../context/EventContext';
+import { IAnswer } from '@Interfaces/IAnswer';
+import { useDispatch } from 'react-redux';
+import { changeCheck } from '../../store/redusers/settingsSlice';
 
 export default function Answer({content, func}: IAnswer) {
     //const btnBgClassName = (id === 3) ? 'bg-yellow-400' : 'my-[40px]'
-    const {setEventVar} = useContext(EventContext)
+    //const {setEventVar} = useContext(EventContext)
+    const dispatch = useDispatch()
 
     const btnAnswerClasses = [
         'relative',
@@ -25,10 +26,7 @@ export default function Answer({content, func}: IAnswer) {
             className={`${btnAnswerClasses.join(' ')}`} 
             onClick={ () => {
                 func()
-                setEventVar(eventVar =>{
-                    eventVar.Check = !eventVar.Check
-                    return {...eventVar}
-                })
+                dispatch(changeCheck())
             }} 
         >
             {content}

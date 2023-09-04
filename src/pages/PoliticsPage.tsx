@@ -1,7 +1,7 @@
 import Party from "../components/PoliticsComponents/Party";
 import PolitCanvas from "../components/PoliticsComponents/PolitCanvas";
 import partys from "../Data/partys";
-import { IParty } from "../Interfaces/IParty";
+import { IParty } from "@Interfaces/IParty";
 import Function from "../components/Function";
 import { useCallback } from "react";
 
@@ -26,32 +26,14 @@ export function PoliticsPage() {
                     }
                     <div className={`border border-black ${partys[0].color}`}> Премьер </div>
 
-                    <Party 
-                        color={partys[0].color} 
-                        politica={partys[0].politica} 
-                        firstName={partys[0].firstName}  
-                        lastName={partys[0].lastName} 
-                        work={partys[0].work} 
-                        par={partys[0].par}
-                        pop={partys[0].pop}
-                        key={partys[0].politica}
-                    />
+                    <Party Party={partys[0]} />
 
                     { partys[0].politica !== 'monarchist' && partys.reduce((sum, elem) => sum + elem.par, 0) > partys[1].par*2 &&
                         partys.reduce((sum, elem)=> sum + elem.par, 0) > partys[0].par *2
                         ?
-                        <Party 
-                            color={partys[1].color} 
-                            politica={partys[1].politica}
-                            firstName={partys[1].firstName} 
-                            lastName={partys[1].lastName} 
-                            work={partys[1].work} 
-                            par={partys[1].par}
-                            pop={partys[1].pop}
-                            key={partys[1].politica}
-                        />
+                        <Party Party={partys[1]} />
                         :
-                        <Party color={''}politica={''}firstName={'Запрещен'}lastName={''}work={''}par={0}pop={0}key={''}/>
+                        <Party Party={bannedMinister()}/>
                     }
 
                     <span className={`border border-black bg-[#8F9280]`}> Парламент </span>
@@ -65,16 +47,7 @@ export function PoliticsPage() {
                     },[])}/>
 
                     {partys.map((party: IParty) => (
-                        <Party
-                            color={`${party.color}`}
-                            politica={party.politica} 
-                            firstName={party.firstName} 
-                            lastName={party.lastName} 
-                            work={party.work} 
-                            par={party.par}
-                            pop={party.pop}
-                            key={party.politica}
-                        />
+                        <Party Party={party} />
                     ))}
                 </span>
                 <span/> 
@@ -82,4 +55,18 @@ export function PoliticsPage() {
 
         </>
     )
+}
+
+const bannedMinister = ():IParty => {
+    const Party ={
+        color:'',
+        politica:'',
+        firstName:'Запрещен',
+        lastName:'',
+        work:'',
+        par:0,
+        pop:0,
+        key:''
+    }
+    return Party
 }

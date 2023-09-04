@@ -39,7 +39,7 @@ export default function PolitCanvas( {priority} :PolitCanvasProps ) {
                 ctx.fill()
             }) 
             //partys.sort((a,b) => a.par > b.par ? -1 : 1)
-        } 
+        },[partys]
     )
 
     return (

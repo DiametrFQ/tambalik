@@ -1,5 +1,5 @@
 import Answer from './Answer';
-import { IEvents } from '../../Interfaces/IEvent';
+import { IEvents } from '@Interfaces/IEvent';
 
 export default function Events({ Newspaper, src, content, answers}: IEvents ) {
 

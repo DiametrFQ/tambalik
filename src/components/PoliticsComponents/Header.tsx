@@ -1,4 +1,4 @@
-import { IParty } from "../../Interfaces/IParty"
+import { IParty } from "@Interfaces/IParty"
 
 export default function Party({color, politica, firstName, lastName, work}: IParty) {
 
@@ -12,5 +12,5 @@ export default function Party({color, politica, firstName, lastName, work}: IPar
         }
         </>
 
-    )
+    ) 
 }
