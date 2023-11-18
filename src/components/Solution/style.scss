@@ -1,0 +1,28 @@
+.solution{
+    margin-left: 25%;
+    background-color: #D8CEB3;
+    padding-bottom: 30px;
+    border-radius: 10px;
+
+    transition: 0.6s;
+    transform: scaleY(0);
+    height: 0;
+}
+
+.solution > header{
+    color: #000;
+    padding: 20px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    align-items: center;
+    text-align: center;
+    background-color: #C0B493;
+    border-radius: 10px  10px 0 0;
+}
+
+.solution > .content{
+    padding: 0 20px;
+    margin: 33px 12px;
+}

@@ -1,0 +1,34 @@
+.resurs-header{
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+}
+
+.resurs-header> .right{
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Istok Web;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    height: 100%;
+    width: 100%;
+    background-color: rgba(192, 180, 147, 0.10);
+}
+
+.resurs-header > .resurses{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr
+}
+.imgRes{
+    height: 28px;
+    width: 28px;
+    display: inline;
+}

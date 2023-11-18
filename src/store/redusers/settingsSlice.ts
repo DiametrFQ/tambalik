@@ -1,9 +1,9 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import store from '..';
-import events from '../../Data/events';
+import { createSlice } from "@reduxjs/toolkit";
+import store from "..";
+import events from "../../Data/events";
 
-const settingsSlice = createSlice({
-  name: 'settingsSlice',
+const resursesSlice = createSlice({
+  name: "resursesSlice",
   initialState: {
     Check: false,
     Count: 0,
@@ -11,17 +11,20 @@ const settingsSlice = createSlice({
   },
   reducers: {
     plusCount: (store) => {
-        store.Count++;
+      store.Count++;
     },
     changeNum: (store) => {
-        store.Num += (store.Count === 0 ? 0 : Math.floor(Math.random() * events.length));
+      store.Num =
+        store.Count === 0
+          ? 0
+          : Math.floor(1 + Math.random() * (events.length - 1));
     },
     changeCheck: (store) => {
       store.Check = !store.Check;
-  },
+    },
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const {plusCount, changeNum, changeCheck} = settingsSlice.actions;
-export default settingsSlice.reducer;
+export const { plusCount, changeNum, changeCheck } = resursesSlice.actions;
+export default resursesSlice.reducer;

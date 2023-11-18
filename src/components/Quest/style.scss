@@ -1,0 +1,24 @@
+.quest-name{
+    color: #000;
+
+    font-family: Istok Web;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 10px;
+    background-color: rgba(192, 180, 147, 0.1);
+    padding: 25px 50px;
+}
+.quest{
+    background-color: rgba(192, 180, 147, 0.1);
+}
+.condition{
+    transform: scale(0);
+    height: 0;
+    border-radius: 0 0 10px 10px;
+    align-items: center;
+    padding: 0 50px;
+    margin: 2px 0;
+}
+

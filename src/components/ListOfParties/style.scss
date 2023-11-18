@@ -1,0 +1,31 @@
+.list-of-parties{
+    display: grid;
+    grid-template-columns: 1fr 210px;
+    margin-top: 2px;
+    padding: 12px;
+    background-color: rgba(192, 180, 147, 0.10);
+}
+
+.list{
+    margin-left: 20px;
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    
+}
+.list> .element{
+    padding-top: 10px;
+}
+
+
+.list-of-parties>canvas{
+
+    $width: 300px;
+    width: $width;
+    height: calc($width / 2);
+    // padding-right: 42%;
+    margin: auto;
+
+}

@@ -1,25 +1,27 @@
-import { Route, Routes, Link } from 'react-router-dom';
-import { EventPage } from './pages/EventPage';
-import { PoliticsPage } from './pages/PoliticsPage';
-import ButtomNewEvent from './components/EnentComponents/ButtomNewEvent';
-import partys from './Data/partys';
+import { Route, Routes } from 'react-router-dom';
+// import { EventPage } from './pages/EventPage';
+// import { PoliticsPage } from './pages/PoliticsPage';
+// import ButtomNewEvent from './components/EnentComponents/ButtomNewEvent';
+import Map from './pages/Map';
+// import partys from './Data/partys';
+import './index.scss'
+import Directions from './components/Directions';
+import Trends from './pages/Trends';
+import Economy from './pages/Economy';
+import Quests from './pages/Quests';
+import PolicySituation from './pages/PolicySituation';
+
 function App() {
-//document.querySelector('#menu').style.left = 0
-//document.querySelector('#menu').style.left = '-260px'
-// transition: all ease 760ms;
     return (
       <>
-        <Link to="/politics" onClick={
-          () => partys.sort((a,b) => a.par > b.par ? -1 : 1)
-        }>
-          <div className='absolute h-[128px] w-[20%] left-0 top-0 bg-[#9E8449]'/>
-        </Link>
-        <Link to="/">       
-          <ButtomNewEvent />
-        </Link>
+        <Directions />
         <Routes>
-          <Route path='/' element={<EventPage />}> </Route>
-          <Route path='/politics' element={<PoliticsPage />}> </Route>
+          <Route path='/' element={<Map />} />
+          <Route path='/policy-situation' element={<PolicySituation />} />
+          <Route path='/economy' element={<Economy />} />
+          {/* <Route path='/foreign-policy' element={<Voider />} /> */}
+          <Route path='/tasks' element={<Quests />} />
+          <Route path='/trends' element={<Trends />} />
         </Routes>
       </>
     );
