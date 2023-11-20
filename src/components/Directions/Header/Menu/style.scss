@@ -1,11 +1,9 @@
 .menu{
   width: 100%;
-  transform-origin: 0 0;
+  transform-origin: top left;
   transition-duration: 0.30s;
   height: 0;
   transform: scaleY(0);
-  // z-index: 1000;
-  // margin-top: 6%;
   position: static;
 }
   

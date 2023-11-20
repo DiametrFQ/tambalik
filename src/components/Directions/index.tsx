@@ -4,9 +4,9 @@ import Header from "./Header";
 function Directions() {
     return (
         <div className="directions">
-        <Header/>
+            <Header/>
 
-        <Menu/>
+            <Menu/>
         </div>
     );
 }

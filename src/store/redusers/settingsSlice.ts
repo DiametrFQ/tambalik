@@ -7,6 +7,8 @@ const settingsSlice = createSlice({
   initialState: {
     random: 0,
     level: 1,
+    canSolutionBeOpen: true,
+    canMenuBeOpen: true,
   },
   reducers: {
     setRandom(state) {
@@ -15,9 +17,16 @@ const settingsSlice = createSlice({
     levelIncrement(state) {
       state.level++;
     },
+    setSolutionBeOpen(state) {
+      state.canSolutionBeOpen = !state.canSolutionBeOpen;
+    },
+    setMenuBeOpen(state) {
+      state.canMenuBeOpen = !state.canMenuBeOpen;
+    },
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { setRandom, levelIncrement } = settingsSlice.actions;
+export const { setRandom, levelIncrement, setSolutionBeOpen, setMenuBeOpen } =
+  settingsSlice.actions;
 export default settingsSlice.reducer;

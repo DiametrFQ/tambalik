@@ -1,13 +1,18 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/redusers/settingsSlice";
 import "./style.scss"
 import {useState} from "react"
 function MenuButton() {
     const [isOpen, setOpen ]= useState<Boolean>(false)
+    const canSolutionBeOpen = useSelector((state:RootState)=>state.settings).canMenuBeOpen
     return (
         <>
             <div 
                 className='menuButton'
                 
                 onClick={()=>{
+                    if(!canSolutionBeOpen) return
+                    
                     const menu:HTMLElement = document.querySelector(".menu")!
                     const startMenuHeight = "317px" || "395px"
 

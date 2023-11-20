@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import "./style.scss"
-import { levelIncrement, setRandom } from "../../../store/redusers/settingsSlice"
+import { RootState, levelIncrement, setMenuBeOpen, setSolutionBeOpen } from "../../../store/redusers/settingsSlice"
+import { useDispatch } from "react-redux"
 
 type propsAnswer ={
     content: string
@@ -8,21 +9,23 @@ type propsAnswer ={
 }
 
 function Answer({content, move}: propsAnswer) {
+    
+    const canSolutionBeOpen = useSelector((state:RootState)=>state.settings).canSolutionBeOpen
     const dispatch = useDispatch()
+
     const hiddenSolution = () => {
-        setTimeout(()=>{
-            const solution: HTMLDivElement = document.querySelector(".solution")!
-            const startMenuHeight = "0px"
-      
-            solution.style.transform = "scale(0)";
-            solution.style.height = startMenuHeight;
+        if(canSolutionBeOpen) return
 
-            dispatch(levelIncrement())
-            dispatch(setRandom())
+        const solution: HTMLDivElement = document.querySelector(".solution")!
+        const startMenuHeight = "0px"
+    
+        solution.style.transform = "scale(0)";
+        solution.style.height = startMenuHeight;
 
-            move()
-            
-          },0)
+        dispatch(setSolutionBeOpen())
+        dispatch(setMenuBeOpen())
+        dispatch(levelIncrement())
+        move()
     }
 
     return (

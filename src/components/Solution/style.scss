@@ -3,10 +3,10 @@
     background-color: #D8CEB3;
     padding-bottom: 30px;
     border-radius: 10px;
-
+    transform-origin: top;
     transition: 0.6s;
     transform: scaleY(0);
-    height: 0;
+    // height: 0px;
 }
 
 .solution > header{
