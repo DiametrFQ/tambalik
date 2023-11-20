@@ -1,10 +1,13 @@
 import Answer from "./Answer";
 import "./style.scss"
 import events from "../../Data/events";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/redusers/settingsSlice";
 
 function Solution() {
-    const random = Math.round(Math.random()*(events.length-1))
-    const event = events[random]
+    const random = useSelector((state:RootState)=>state.settings).random;
+    let event = events[random];
+
     return (
         <div className="solution">
             <header>
@@ -16,7 +19,9 @@ function Solution() {
             </div>
 
             {event.answers.map((el, ind) => {
-                return <Answer key={ind} content={el.content!.toString()} move={el.func}/>
+                return <Answer key={ind} content={el.content!.toString()} move={() =>{
+                    el.func()
+                }}/>
             })}
 
         </div>

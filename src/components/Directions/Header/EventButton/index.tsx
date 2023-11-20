@@ -1,5 +1,9 @@
+import { useSelector } from "react-redux"
 import "./style.scss"
+import { RootState } from "../../../../store/redusers/settingsSlice"
 function EventButton() {
+
+  const level = useSelector((state:RootState)=>state.settings).level
 
   const visabilitySolution = () => {
 
@@ -11,12 +15,11 @@ function EventButton() {
       solution.style.height = startMenuHeight;
 
     },0)
-
   }
 
   return (
     <div className='eventButton' onClick={visabilitySolution}>
-      Уровень &#9660;
+      Уровень {level} &#9660;
     </div>
   );
 }

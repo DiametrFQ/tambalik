@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import store from "..";
 
-const settingsSlice = createSlice({
-  name: "settingsSlice",
+const resursersSlice = createSlice({
+  name: "resursersSlice",
   initialState: {
     money: 0,
     people: 0,
@@ -44,5 +44,5 @@ export const {
   setWarPower,
   setEconomicPower,
   setSupportCivilServants,
-} = settingsSlice.actions;
-export default settingsSlice.reducer;
+} = resursersSlice.actions;
+export default resursersSlice.reducer;
