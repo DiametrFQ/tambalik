@@ -8,7 +8,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Istok Web;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -20,9 +19,10 @@
 }
 
 .resurs-header > .resurses{
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    // text-align: center;
+    // justify-content: center;
+    // align-items: center;
+    padding-left: 20px;
 
     display: grid;
     grid-template-columns: 1fr 1fr

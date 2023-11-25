@@ -4,10 +4,10 @@ import store from "..";
 const resursersSlice = createSlice({
   name: "resursersSlice",
   initialState: {
-    money: 0,
-    people: 0,
+    money: 100,
+    people: 1000,
     warPower: 0,
-    economicPower: 0,
+    economicPower: 2,
     supportCivilServants: 0,
   },
   reducers: {

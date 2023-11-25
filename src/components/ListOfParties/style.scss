@@ -1,8 +1,10 @@
+$canvas-width: 180px;
+
 .list-of-parties{
     display: grid;
-    grid-template-columns: 1fr 210px;
+    grid-template-columns: 1fr $canvas-width;
     margin-top: 2px;
-    padding: 12px;
+    padding:  12px 0 12px 12px;
     background-color: rgba(192, 180, 147, 0.10);
 }
 
@@ -22,10 +24,10 @@
 
 .list-of-parties>canvas{
 
-    $width: 300px;
-    width: $width;
-    height: calc($width / 2);
+    width: $canvas-width;
+    height: $canvas-width;
+    // padding-right: 210px;
     // padding-right: 42%;
-    margin: auto;
+    margin: auto 0;
 
 }

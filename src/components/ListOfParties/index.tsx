@@ -12,16 +12,21 @@ function ListOfParties({partyNames}: pipeListOfParties) {
     useEffect(() =>{
         const partys = Partys
         const ctx = canvasRef.current!.getContext('2d')!;
-        const coord = partys.getPartyPower("pop")
-
+        const coord = partys.getCoordsCanvasFromPartyPowerBy("par")
+        const width = 220
+        canvasRef.current!.width  = width;
+        canvasRef.current!.height = width; 
+        // canvasRef.current!.style.width  = '800px';
+        // canvasRef.current!.style.height = '600px';
         ctx.clearRect(0,0, 1000, 1000)
         partys.get().forEach((party, i) => {
             ctx.beginPath()
             ctx.strokeStyle = party.color.substring(4, 11)
             ctx.fillStyle = party.color.substring(4, 11)
-            ctx.moveTo(145, 75)
-            ctx.arc(145, 75, 65, coord[i].value, coord[i+1].value, true)
-            ctx.lineTo(145, 75)
+            const center: [number, number] = [width/2, width/2]
+            ctx.moveTo(...center)
+            ctx.arc(...center, 75, coord[i], coord[i+1], true)
+            ctx.lineTo(...center)
             ctx.fill()
         }) 
 

@@ -14,8 +14,8 @@ function MenuButton() {
                     if(!canSolutionBeOpen) return
                     
                     const menu:HTMLElement = document.querySelector(".menu")!
-                    const startMenuHeight = "317px" || "395px"
-
+                    const startMenuHeight = window.innerWidth > 344 ? "317px" : "343px"
+                    
                     if(!isOpen){ 
                         menu.style.transform = "scale(0)";
                         menu.style.height = "0"

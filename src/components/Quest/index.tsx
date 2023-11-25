@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import "./style.scss"
+import partys from "./../../Data/partys";
 
 function Quest() {
 
@@ -28,6 +29,12 @@ function Quest() {
             </div>
 
             <div ref={condition} className="condition">
+                {partys.powerPersentParty("nationalist","par") > 0.1 
+                ? <>&#10003; условие задачи выполнено</> 
+                : <>&#10006; условие задачи невыполнен</>}
+                <br />
+{partys.powerPersentParty("nationalist","par")}
+
                 &#10003; условие задачи
                 <br />
                 &#10006; asdasda

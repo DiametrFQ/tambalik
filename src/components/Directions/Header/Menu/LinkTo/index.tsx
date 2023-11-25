@@ -11,7 +11,10 @@ function LinkTo({path, content}:IPropsLinkTo) {
     const div = useRef<HTMLDivElement>(null)
 
     const location = useLocation();
-    const backgroundColor = location.pathname === path?"#FFC528":"#E7DEC6" 
+    const backgroundColor = 
+        location.pathname === path
+            ? "#FFC528"
+            : "#E7DEC6" 
     
     return (
         <Link to={path}>

@@ -54,7 +54,7 @@ const dataPartys: IParty[] = [
     lastName: "awred",
     work: "hunter",
     pop: 400,
-    par: 10,
+    par: 5,
   },
 ];
 

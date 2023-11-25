@@ -3,74 +3,47 @@ import { IParty } from "@Interfaces/IParty";
 export default class Partys {
   constructor(private partys: IParty[]) {}
 
-  private setPartyOnSortedFor(characteristic: "pop" | "par") {
+  private setThisPartysOnSortedFor(characteristic: "pop" | "par") {
     this.partys.sort((party1, party2) =>
       party1[characteristic] > party2[characteristic] ? -1 : 1
     );
   }
 
-  private sortPartys(PartysFor: number[]) {
-    const sortedPartys = new Int32Array(PartysFor).sort().reverse();
+  private getSortPowersFor(characteristic: "pop" | "par") {
+    const partysForChar = this.partys.map((el) => el[characteristic]);
+    const sortedPartys = Int32Array.from(partysForChar).sort().reverse();
+
     return Array.from(sortedPartys);
   }
 
-  private getSortFor(characteristic: "pop" | "par") {
-    const partysForPop = this.partys.map((el) => el[characteristic]);
+  private SumOf = (characteristic: "pop" | "par") =>
+    this.getSortPowersFor(characteristic).reduce((sum, elem) => sum + elem, 0);
 
-    return this.sortPartys(partysForPop);
-  }
+  getPartysName = () => this.partys.map((el) => el.politica);
 
-  private SumOf(characteristic: "pop" | "par") {
-    const sum = this.getSortFor(characteristic).reduce(
-      (sum, elem) => sum + elem,
-      0
+  get = () => this.partys;
+
+  getLeader = () => this.partys[0].firstName + " " + this.partys[0].lastName;
+
+  getCoordsCanvasFromPartyPowerBy(characteristic: "pop" | "par"): number[] {
+    const partyFrom = this.getSortPowersFor(characteristic);
+
+    const coordsCanvas: number[] = partyFrom.reduce(
+      (acc, val) => {
+        acc[0] += val;
+        const partyPower = acc[0];
+        const partyPowerPersent = 1 - partyPower / this.SumOf(characteristic);
+        const coordCanvas = 2 * Math.PI * partyPowerPersent;
+
+        return [...acc, coordCanvas];
+      },
+      [0]
     );
-    return sum;
+
+    return coordsCanvas;
   }
 
-  getPartysName() {
-    return this.partys.map((el) => el.politica);
-  }
-
-  get() {
-    // console.log(this.partys);
-    return this.partys;
-  }
-
-  getLeader() {
-    return this.partys[0].firstName + " " + this.partys[0].lastName;
-  }
-
-  getPartyPower(characteristic: "pop" | "par") {
-    const partyFrom = this.getSortFor(characteristic).map((el) => {
-      const partyPower = {
-        value: el,
-        nameParty: this.partys.find(
-          (party) => Math.floor(party[characteristic]) === el
-        )!.politica,
-      };
-
-      return partyPower;
-    });
-
-    partyFrom.unshift({ value: 0, nameParty: "none" });
-
-    const PartyPower = partyFrom.map((el, imap) => {
-      const sumSome = partyFrom.reduce(
-        (sum, value, ired) => (ired < imap + 1 ? sum + value.value : sum),
-        0
-      );
-      // console.log(el.nameParty / this.SumOf("pop"));
-      return {
-        value: 2 * Math.PI * (1 - sumSome / this.SumOf(characteristic)),
-        name: el.nameParty,
-      };
-    });
-
-    return PartyPower;
-  }
-
-  powerPersent(
+  powerPersentParty(
     partyName:
       | "monarchist"
       | "liberal"
@@ -79,11 +52,18 @@ export default class Partys {
       | "green"
       | "socialist",
     characteristic: "pop" | "par"
-  ) {
-    const power = this.getPartyPower(characteristic);
-    const sum = power.reduce((acc, el) => acc + el.value, 0);
-    const partyPower = power.find((el) => el.name === partyName);
-    const percent = partyPower!.value / sum;
-    return percent;
+  ): number {
+    this.setThisPartysOnSortedFor(characteristic);
+    const partys = Array.from(this.get());
+
+    const partyTrigger = partys.find((party) => party.politica === partyName)!;
+    const summByCharacteristic = partys.reduce(
+      (acc, party) => acc + party[characteristic],
+      0
+    );
+    const powerPercentPartyTrigger =
+      partyTrigger[characteristic] / summByCharacteristic;
+
+    return +powerPercentPartyTrigger.toFixed(2);
   }
 }
