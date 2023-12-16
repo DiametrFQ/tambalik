@@ -15,20 +15,22 @@ function MenuButton() {
                     if(!canSolutionBeOpen) return
                     
                     const menu:HTMLElement = document.querySelector(".menu")!
-                    const can:HTMLElement = document.querySelector(".map > canvas")!
+                    const can:HTMLElement|null = document.querySelector(".map > canvas")
 
                     const startMenuHeight = window.innerWidth > 344 ? 317 : 343
-                    
                     if(!isOpen){ 
                         menu.style.transform = "scale(0)";
                         menu.style.height = "0"
-                        can.style.top = `${250+side/11}px`
+                        if(!!can){
+                            can.style.top = `${250+side/11}px`
+                        }
                     }
                     else {
                         menu.style.transform = "scale(1)";
                         menu.style.height = startMenuHeight+"px"
-
-                        can.style.top = `${250+startMenuHeight+side/11}px`
+                        if(!!can){
+                            can.style.top = `${250+startMenuHeight+side/11}px`
+                        }
                     }
 
                     setOpen(isOpen => !isOpen)
