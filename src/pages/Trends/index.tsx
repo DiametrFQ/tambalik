@@ -1,6 +1,11 @@
-
+import { useDispatch, useSelector } from "react-redux";
 import "./style.scss"
+import { RootState } from "../../store/redusers/trendsSlice";
+import { setActiveTrend } from "../../store/redusers/modelWindowSlice";
 function Trends() {
+    const {politicalParty, radicalism} = useSelector((state:RootState)=>state.trends)
+    const dispatch = useDispatch()
+    dispatch(setActiveTrend(false))
     return (
         <div className="trends">
             <div>
@@ -8,16 +13,16 @@ function Trends() {
                     Политическая партия:  
                 </div>
                 <span>
-                    Абстракцирнизм
+                    {politicalParty === "none"? "нет":politicalParty}
                 </span> 
             </div>      
 
             <div>
                 <div>
-                    Склонность к войне:     
+                    Радикализм:     
                 </div>
                 <span>
-                    Средняя
+                    {radicalism.toFixed(2)}%
                 </span> 
             </div>           
         </div>

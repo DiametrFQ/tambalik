@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import store from "..";
-import events from "../../Data/events";
 
 const settingsSlice = createSlice({
   name: "settingsSlice",
@@ -11,11 +10,12 @@ const settingsSlice = createSlice({
     canMenuBeOpen: true,
   },
   reducers: {
-    setRandom(state) {
-      state.random = Math.round(Math.random() * (events.length - 1));
+    setRandom(state, actions) {
+      // console.log(actions.payload);
+      state.random = Math.round(Math.random() * (actions.payload - 1));
     },
     levelIncrement(state) {
-      state.level++;
+      ++state.level;
     },
     setSolutionBeOpen(state) {
       state.canSolutionBeOpen = !state.canSolutionBeOpen;
@@ -27,6 +27,6 @@ const settingsSlice = createSlice({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { setRandom, levelIncrement, setSolutionBeOpen, setMenuBeOpen } =
+export const { levelIncrement, setRandom, setSolutionBeOpen, setMenuBeOpen } =
   settingsSlice.actions;
 export default settingsSlice.reducer;

@@ -1,9 +1,15 @@
+import { condition } from "../../../Services/types/TQuest";
 import "./style.scss"
-function Condition() {
+function Condition({conditionText, condition}:condition) {
     return (
-        <div className="condition">
-            условие задачи
-        </div>
+       <>
+
+        {condition 
+            ? <>&#10003;</> 
+            : <>&#10006;</>}
+        <span className="conditionText">Условие: {conditionText}</span>
+        <br />
+       </>
     );
 }
 

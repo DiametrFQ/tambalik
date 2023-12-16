@@ -1,10 +1,12 @@
+import { useDispatch } from "react-redux";
 import partys from "../../Data/partys";
 import ListOfParties from "../../components/ListOfParties";
+import { setActivePolsit } from "../../store/redusers/modelWindowSlice";
 import "./style.scss"
-import { useSelector } from "react-redux";
 
 function PolicySituation() {
-
+    const dispatch = useDispatch()
+    dispatch(setActivePolsit(false))
     return (
         <div >
             <div className="policy-situation-info">
@@ -41,7 +43,7 @@ function PolicySituation() {
                 <ListOfParties partys={["Фотоублюдки","Aфриканцы","Абобы"]}/>
                 return <div>{el.politica}</div>
             })} */}
-            <ListOfParties partyNames={partys.getPartysName()}/>
+            <ListOfParties partyNames={partys.getPartysNameSortedBy("par")}/>
         </div>
     );
 }

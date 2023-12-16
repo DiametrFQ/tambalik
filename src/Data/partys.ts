@@ -1,7 +1,7 @@
-import Partys from "../Interfaces/Partys";
-import { IParty } from "./../Interfaces/IParty";
+import Partys from "../Services/Classes/CPartys";
+import { TParty } from "../Services/types/TParty";
 
-const dataPartys: IParty[] = [
+var dataPartys: TParty[] = [
   {
     color: "bg-[#6201FD]",
     politica: "monarchist",
@@ -58,4 +58,5 @@ const dataPartys: IParty[] = [
   },
 ];
 
-export default new Partys(dataPartys);
+var Party = new Partys(dataPartys);
+export default Party;

@@ -1,27 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 import store from "..";
+import { partysNames } from "../../Services/types/TParty";
+import { setActiveTrend } from "./modelWindowSlice";
 
 const trendsSlice = createSlice({
   name: "trendsSlice",
   initialState: {
-    politicalParty: "none",
-    inclinationForWar: 0,
+    politicalParty: "monarchist" as partysNames | "none",
+    radicalism: 0,
     Num: 0,
   },
   reducers: {
-    setPoliticalParty: (store, actions) => {
-      store.politicalParty = actions.payload;
+    setPoliticalParty: (state, actions) => {
+      state.politicalParty = actions.payload;
     },
-    setInclinationForWar: (store, actions) => {
-      store.inclinationForWar = actions.payload;
+    setRadicalism: (state, actions) => {
+      state.radicalism += actions.payload;
 
-      if (store.inclinationForWar > 100) {
-        store.inclinationForWar = 100;
+      if (state.radicalism > 100) {
+        state.radicalism = 100;
+      } else if (state.radicalism < 0) {
+        state.radicalism = 0;
+      } else {
+        setActiveTrend(true);
       }
     },
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { setPoliticalParty, setInclinationForWar } = trendsSlice.actions;
+export const { setPoliticalParty, setRadicalism } = trendsSlice.actions;
 export default trendsSlice.reducer;

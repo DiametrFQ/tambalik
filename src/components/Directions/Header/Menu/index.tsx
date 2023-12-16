@@ -1,15 +1,23 @@
 import "./style.scss"
 import LinkTo from "./LinkTo";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/redusers/resursersSlice";
+import { TChange } from "../../../../store/redusers/modelWindowSlice";
 
+function plusMinus(polsit:boolean){
+  return  (polsit ? String.fromCharCode(8593) + String.fromCharCode(8595) :"") 
+}
 function Menu() {
+  const {polsit, econom, quest, trend} = useSelector((state: RootState)=> state.modelWindow)
   return (
-    <div className="menu">
-      <LinkTo path="/policy-situation" content="Политическая ситуация" />
-      <LinkTo path="/economy" content="Экономика" />
-      {/* <LinkTo path="/foreign-policy" content="Внешняя политика" /> */}
-      <LinkTo path="/tasks" content="Задачи" />
-      <LinkTo path="/trends" content="Тенденции" />
-    </div>
+
+      <div className="menu">
+        <LinkTo path="/policy-situation" content={  plusMinus(polsit) + "  Политическая ситуация"} />
+        <LinkTo path="/economy" content={ plusMinus(econom) + " Экономика"}  />
+        {/* <LinkTo path="/foreign-policy" content="Внешняя политика" /> */}
+        <LinkTo path="/tasks" content={ plusMinus(quest)+ "  Задачи"} />
+        <LinkTo path="/trends" content={ plusMinus(trend)+ "  Тенденции"} />
+      </div>
   );
 }
 

@@ -10,16 +10,17 @@ function ListOfParties({partyNames}: pipeListOfParties) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() =>{
-        const partys = Partys
+        const partys = Partys.getPartysOnSortedBy("par")
+
         const ctx = canvasRef.current!.getContext('2d')!;
-        const coord = partys.getCoordsCanvasFromPartyPowerBy("par")
+        const coord = Partys.getCoordsCanvasFromPartyPowerBy("par")
         const width = 220
         canvasRef.current!.width  = width;
         canvasRef.current!.height = width; 
         // canvasRef.current!.style.width  = '800px';
         // canvasRef.current!.style.height = '600px';
         ctx.clearRect(0,0, 1000, 1000)
-        partys.get().forEach((party, i) => {
+        partys.forEach((party, i) => {
             ctx.beginPath()
             ctx.strokeStyle = party.color.substring(4, 11)
             ctx.fillStyle = party.color.substring(4, 11)
@@ -30,7 +31,7 @@ function ListOfParties({partyNames}: pipeListOfParties) {
             ctx.fill()
         }) 
 
-        },[Partys.get()]
+        }
     )
 
     return (

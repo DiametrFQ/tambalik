@@ -1,45 +1,55 @@
 import { useRef, useState } from "react";
 import "./style.scss"
-import partys from "./../../Data/partys";
-
-function Quest() {
+// import Quests from "../../Data/quests";
+import Condition from "./Condition";
+import { TQuest } from "../../Services/types/TQuest";
+type questProps = {
+    quest:TQuest
+}
+function Quest({quest}:questProps) {
 
     const [isHidden, setHidden] = useState(false);
-    const condition = useRef<HTMLDivElement>(null)
+    const conditionRef = useRef<HTMLDivElement>(null)
 
     const visabilityCondition = () => {
         setHidden(isHidden => !isHidden)
         if (!isHidden) {
-            condition.current!.style.transform = "scaleY(0)";
-            condition.current!.style.height = "0"
+            conditionRef.current!.style.transform = "scaleY(0)";
+            // conditionRef.current!.style.padding = "0 50px";
+            conditionRef.current!.style.height = "0"
         }
         else {
-            condition.current!.style.transform = "scaleY(1)";
-            condition.current!.style.height = "100%"
+            conditionRef.current!.style.transform = "scaleY(1)";
+            conditionRef.current!.style.height = "100%"
+            // conditionRef.current!.style.padding = "25px 50px";
         }
     }
 
     return (
-        <div className="quest">
+        <div 
+            className="quest"
+            style={{backgroundColor: quest.timeLeftToWork? "green" : ""}}
+        >   
             <div
                 className="quest-name"
-                onClick={visabilityCondition}
-            >
-                Очень важная задача
+                onClick={visabilityCondition}>
+                {quest.questName}
+
+                {quest.conditions.every(el => el.condition) && 
+                    !quest.timeLeftToWork &&
+                <button
+                    onClick={()=>{
+                        quest.timeLeftToWork = quest.workInterval
+                    }}>
+                    Включить
+                </button>}
+
             </div>
 
-            <div ref={condition} className="condition">
-                {partys.powerPersentParty("nationalist","par") > 0.1 
-                ? <>&#10003; условие задачи выполнено</> 
-                : <>&#10006; условие задачи невыполнен</>}
-                <br />
-{partys.powerPersentParty("nationalist","par")}
+            <div ref={conditionRef} className="condition">
+                {quest.conditions.map((el, index) => <Condition key={index} {...el}/>)}
 
-                &#10003; условие задачи
-                <br />
-                &#10006; asdasda
-                <br />
-                &#10006; asdasd
+                <div>Награда: {quest.bonusText()}</div>
             </div>
         </div>
     );

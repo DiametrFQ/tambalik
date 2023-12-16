@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import store from "..";
+import { setActiveEconom } from "./modelWindowSlice";
 
 const resursersSlice = createSlice({
   name: "resursersSlice",
@@ -11,27 +12,38 @@ const resursersSlice = createSlice({
     supportCivilServants: 0,
   },
   reducers: {
-    setMoney: (store, actions) => {
-      store.money += actions.payload;
+    setMoney: (state, actions) => {
+      state.money += actions.payload;
+      setActiveEconom(true);
     },
-    setNum: (store, actions) => {
-      store.people += actions.payload;
+    setPeople: (state, actions) => {
+      state.people += actions.payload;
+      setActiveEconom(true);
     },
-    setWarPower: (store, actions) => {
-      store.warPower += actions.payload;
+    setWarPower: (state, actions) => {
+      state.warPower += actions.payload;
 
-      if (store.warPower > 100) {
-        store.warPower = 100;
+      if (state.warPower > 100) {
+        state.warPower = 100;
+      } else if (state.warPower < 0) {
+        state.warPower = 0;
+      } else {
+        setActiveEconom(true);
       }
     },
-    setEconomicPower: (store, actions) => {
-      store.warPower += actions.payload;
+    setEconomicPower: (state, actions) => {
+      state.warPower += actions.payload;
+      setActiveEconom(true);
     },
-    setSupportCivilServants: (store, actions) => {
-      store.warPower += actions.payload;
+    setSupportCivilServants: (state, actions) => {
+      state.warPower += actions.payload;
 
-      if (store.warPower > 100) {
-        store.warPower = 100;
+      if (state.warPower > 100) {
+        state.warPower = 100;
+      } else if (state.warPower < 0) {
+        state.warPower = 0;
+      } else {
+        setActiveEconom(true);
       }
     },
   },
@@ -40,7 +52,7 @@ const resursersSlice = createSlice({
 export type RootState = ReturnType<typeof store.getState>;
 export const {
   setMoney,
-  setNum,
+  setPeople,
   setWarPower,
   setEconomicPower,
   setSupportCivilServants,

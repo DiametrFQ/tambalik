@@ -1,8 +1,5 @@
 // import { useState } from 'react';
 import './style.scss'
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { RootState, setTax } from '../../store/redusers/inputsStateSlice';
 
 interface IPropResourceScale {
     imgHref: string
@@ -11,9 +8,7 @@ interface IPropResourceScale {
     onChange: Function
 }
 
-function ResourceScale({ imgHref, name, value, onChange}:IPropResourceScale) {
-    const inputsState = useSelector((state:RootState)=> state.inputsState)
-    const dispatch = useDispatch()
+function ResourceScale({ imgHref, name, value, onChange }:IPropResourceScale) {
 
     return (
         <div className="resource-scale">

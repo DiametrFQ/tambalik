@@ -4,25 +4,31 @@ import "./style.scss"
 import {useState} from "react"
 function MenuButton() {
     const [isOpen, setOpen ]= useState<Boolean>(false)
-    const canSolutionBeOpen = useSelector((state:RootState)=>state.settings).canMenuBeOpen
+    const {canSolutionBeOpen} = useSelector((state:RootState)=>state.settings)
     return (
         <>
             <div 
                 className='menuButton'
                 
                 onClick={()=>{
+                    const side = window.innerWidth*0.55
                     if(!canSolutionBeOpen) return
                     
                     const menu:HTMLElement = document.querySelector(".menu")!
-                    const startMenuHeight = window.innerWidth > 344 ? "317px" : "343px"
+                    const can:HTMLElement = document.querySelector(".map > canvas")!
+
+                    const startMenuHeight = window.innerWidth > 344 ? 317 : 343
                     
                     if(!isOpen){ 
                         menu.style.transform = "scale(0)";
                         menu.style.height = "0"
+                        can.style.top = `${250+side/11}px`
                     }
                     else {
                         menu.style.transform = "scale(1)";
-                        menu.style.height = startMenuHeight
+                        menu.style.height = startMenuHeight+"px"
+
+                        can.style.top = `${250+startMenuHeight+side/11}px`
                     }
 
                     setOpen(isOpen => !isOpen)
