@@ -11,11 +11,11 @@ function MenuButton() {
                 className='menuButton'
                 
                 onClick={()=>{
-                    const side = window.innerWidth*0.55
                     if(!canSolutionBeOpen) return
                     
                     const menu:HTMLElement = document.querySelector(".menu")!
                     const can:HTMLElement|null = document.querySelector(".map > canvas")
+                    const side = window.innerWidth*0.55
 
                     const startMenuHeight = window.innerWidth > 344 ? 317 : 343
                     if(!isOpen){ 

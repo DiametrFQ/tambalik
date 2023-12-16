@@ -30,6 +30,12 @@ function EventButton() {
       solution.style.height = startMenuHeight;
 
       const menu :HTMLElement = document.querySelector(".menu")!
+      const can:HTMLElement|null = document.querySelector(".map > canvas")
+      const side = window.innerWidth*0.55
+      
+      if(can){
+        can.style.top = `${250+side/11}px`
+      }
       menu.style.transform = "scale(0)";
       menu.style.height = "0"
     })
