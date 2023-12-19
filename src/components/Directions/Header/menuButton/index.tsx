@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/redusers/settingsSlice";
+import { RootState } from "../../../../store/redusers/settingsSlice";
 import "./style.scss"
 import {useState} from "react"
 function MenuButton() {

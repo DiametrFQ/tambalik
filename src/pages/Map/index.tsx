@@ -50,7 +50,8 @@ function Map() {
             party.people--;
         
             const coords = getCoord(104);
-            const size: [number, number] = [40, 25];
+            const mix = 3
+            const size: [number, number] = [8*mix, 5*mix];
         
             const img = new Image();
             img.src = `chels/chel_${party.rgb}.png`;

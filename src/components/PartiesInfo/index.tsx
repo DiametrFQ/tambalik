@@ -1,16 +1,16 @@
 import { useEffect, useRef } from "react";
 import "./style.scss"
 import Partys from "../../Data/partys";
+import PartysList from "./PartysList";
 
 type pipeListOfParties = {
     partyNames: string[]//IPartys
 }
 
-function ListOfParties({partyNames}: pipeListOfParties) {
+function PartiesInfo({partyNames}: pipeListOfParties) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
-
+    const partys = Partys.getPartysOnSortedBy("par")
     useEffect(() =>{
-        const partys = Partys.getPartysOnSortedBy("par")
 
         const ctx = canvasRef.current!.getContext('2d')!;
         const coord = Partys.getCoordsCanvasFromPartyPowerBy("par")
@@ -19,17 +19,24 @@ function ListOfParties({partyNames}: pipeListOfParties) {
         canvasRef.current!.height = width; 
         // canvasRef.current!.style.width  = '800px';
         // canvasRef.current!.style.height = '600px';
+        const center: [number, number] = [width/2, width/2]
         ctx.clearRect(0,0, 1000, 1000)
         partys.forEach((party, i) => {
             ctx.beginPath()
             ctx.strokeStyle = party.color.substring(4, 11)
             ctx.fillStyle = party.color.substring(4, 11)
-            const center: [number, number] = [width/2, width/2]
             ctx.moveTo(...center)
             ctx.arc(...center, 75, coord[i], coord[i+1], true)
             ctx.lineTo(...center)
             ctx.fill()
         }) 
+        ctx.beginPath()
+        ctx.fillStyle = "white"
+        ctx.arc(...center, 50, 0, Math.PI * 2, true); // Левый глаз
+        ctx.fill()
+        ctx.fillStyle = "#c0b49380"
+        ctx.arc(...center, 50, 0, Math.PI * 2, true); // Левый глаз
+        ctx.fill()
 
         }
     )
@@ -41,18 +48,13 @@ function ListOfParties({partyNames}: pipeListOfParties) {
                     Рейтинг партий:
                 </div>
 
-                <div className="list">
-                    {
-                        partyNames.map((el, index) => {
-                            return <div className="element" key={index}>{index+1} {el}</div>
-                        })
-                    }
-                </div>
+                <PartysList 
+                    partyNamesWithColor={Partys.getNamesPartyswithColor()}/>
             </div>
             <canvas ref={canvasRef} />
         </div>
     );
 }
 
-export default ListOfParties;
+export default PartiesInfo;
 

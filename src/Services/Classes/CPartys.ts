@@ -99,4 +99,12 @@ export default class Partys {
     ]);
     return result;
   }
+  getNamesPartyswithColor() {
+    return this.getPartysOnSortedBy("par").map((p) => {
+      return {
+        politica: p.politica,
+        color: p.color.substring(4, 11),
+      };
+    });
+  }
 }

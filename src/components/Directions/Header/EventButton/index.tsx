@@ -18,7 +18,6 @@ function EventButton() {
       dispatch(setRandom(Events.get().length))
       dispatch(setSolutionBeOpen())
       dispatch(setMenuBeOpen())
-
       // console.log(Party.get())
       economicImpact()
       questsBonus()

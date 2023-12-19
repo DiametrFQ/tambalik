@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import partys from "../../Data/partys";
-import ListOfParties from "../../components/ListOfParties";
+import PartiesInfo from "../../components/PartiesInfo";
 import { setActivePolsit } from "../../store/redusers/modelWindowSlice";
 import "./style.scss"
 
@@ -38,12 +38,7 @@ function PolicySituation() {
                     </span>
                 </div>
             </div>
-            {/* {partys.map((el)=> {
-
-                <ListOfParties partys={["Фотоублюдки","Aфриканцы","Абобы"]}/>
-                return <div>{el.politica}</div>
-            })} */}
-            <ListOfParties partyNames={partys.getPartysNameSortedBy("par")}/>
+            <PartiesInfo partyNames={partys.getPartysNameSortedBy("par")}/>
         </div>
     );
 }

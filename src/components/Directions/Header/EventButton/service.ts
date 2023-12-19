@@ -66,27 +66,6 @@ export function economicImpact() {
     (discipline / 1000) * money,
     discipline / 3
   );
-
-  // const dispatch = store.dispatch;
-  // const power = tax / 100;
-
-  // const charDemSoc: ["par", "pop"] | ["pop", "par"] =
-  //   tax >= 0 ? ["par", "pop"] : ["pop", "par"];
-
-  // democraticParty[charDemSoc[0]] *= power;
-  // socialistParty[charDemSoc[1]] *= power;
-  // dispatch(setPeople(people * power * (warPower / 100)));
-  // dispatch(setMoney(power * power));
-
-  // const powerw = warPower / 100;
-
-  // const charDemSoc: ["par", "pop"] | ["pop", "par"] =
-  //   tax >= 0 ? ["par", "pop"] : ["pop", "par"];
-
-  // democraticParty[charDemSoc[0]] *= power;
-  // socialistParty[charDemSoc[1]] *= power;
-  // dispatch(setWarPower(discipline));
-  // dispatch(setMoney((discipline / 10000) * money));
 }
 
 function setPower(
@@ -117,20 +96,6 @@ function setPower(
   Party.getForChange()[0].pop *= 2 - power;
   partyYes[charDemSoc[0]] *= power;
   partyNo[charDemSoc[1]] *= power;
-
-  // console.log(
-  //   formula1,
-  //   "people " + people,гн
-  //   "tax " + tax,
-  //   "warPower " + warPower,
-  //   "((people * -tax) / 10000) * (1 - warPower / 100)"
-  // );
-  // console.log(
-  //   formula2,
-  //   "people " + people,
-  //   "money " + money,
-  //   "((people / 100) * money) / 100"
-  // );
 
   dispatch(set1(formula1));
   dispatch(set2(formula2));
