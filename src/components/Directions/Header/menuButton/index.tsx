@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/redusers/settingsSlice";
 import "./style.scss"
-import {useState} from "react"
 import { useDispatch } from "react-redux";
+import { RootState, setMenuIsOpen } from "../../../../store/redusers/settingsSlice";
 function MenuButton() {
     const {canSolutionBeOpen, menuIsOpen} = useSelector((state:RootState)=>state.settings)
     const dispatch = useDispatch();
