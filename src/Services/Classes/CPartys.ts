@@ -102,7 +102,7 @@ export default class Partys {
   getNamesPartyswithColor() {
     return this.getPartysOnSortedBy("par").map((p) => {
       return {
-        politica: p.politica,
+        politica: p.title,
         color: p.color.substring(4, 11),
       };
     });
