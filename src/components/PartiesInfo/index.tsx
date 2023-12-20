@@ -20,7 +20,9 @@ function PartiesInfo({partyNames}: pipeListOfParties) {
         // canvasRef.current!.style.width  = '800px';
         // canvasRef.current!.style.height = '600px';
         const center: [number, number] = [width/2, width/2]
-        const radius = 110
+        const radius = 90
+        const subRadius = radius-35
+        
         ctx.clearRect(0,0, 1000, 1000)
         partys.forEach((party, i) => {
             ctx.beginPath()
@@ -33,10 +35,10 @@ function PartiesInfo({partyNames}: pipeListOfParties) {
         }) 
         ctx.beginPath()
         ctx.fillStyle = "white"
-        ctx.arc(...center, radius-40, 0, Math.PI * 2, true); // Левый глаз
+        ctx.arc(...center, subRadius, 0, Math.PI * 2, true); // Левый глаз
         ctx.fill()
         ctx.fillStyle = "#c0b49380"
-        ctx.arc(...center, radius-40, 0, Math.PI * 2, true); // Левый глаз
+        ctx.arc(...center, subRadius, 0, Math.PI * 2, true); // Левый глаз
         ctx.fill()
 
         }
