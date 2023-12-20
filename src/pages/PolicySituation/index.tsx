@@ -18,7 +18,7 @@ function PolicySituation() {
                         Абсолютная монархия
                     </span>
                 </div>
-                <img src="" alt="" />
+                <img src={partys.get()[0].leader} alt="" />
             </div>
             <div className="leaders-info">
                 <div className="head leader">

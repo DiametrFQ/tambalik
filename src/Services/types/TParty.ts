@@ -1,6 +1,7 @@
 export type TParty = {
   color: string;
   politica: string;
+  leader: string;
   firstName: string;
   lastName: string;
   work: string;
