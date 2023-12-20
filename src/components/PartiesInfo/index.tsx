@@ -44,7 +44,7 @@ function PartiesInfo({partyNames}: pipeListOfParties) {
     return (
         <div className="list-of-parties">
             <div>
-                <div>
+                <div className="title">
                     Рейтинг партий:
                 </div>
 

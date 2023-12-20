@@ -9,7 +9,7 @@
     height: 96px;
 }
 .policy-situation-info > div {
-    padding: 20px 12px;
+    padding: 20px 32px;
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -32,7 +32,7 @@
     background-color: #C0B493;
     border-radius: 10px;
 }
-.leaders-info{
+.leaders-info {
     padding: 12px 12px;
     margin-top: 5px;
     width: 100%;
@@ -40,9 +40,13 @@
     background-color: rgba(192, 180, 147, 0.10);
     border-radius: 10px;
 }
-.head{
+.head {
     margin-top: 12px;
 }
-.head > .value{
+.head > .value {
     font-size: 22px;
+    padding-left: 20px;
+}
+.head div {
+    padding-left: 20px;
 }
