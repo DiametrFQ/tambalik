@@ -11,13 +11,14 @@ function MenuButton() {
                 className='menuButton'
                 
                 onClick={()=>{
-                    if(!canSolutionBeOpen) return
-                    
+                    if(!menuIsOpen) return
+
                     const menu:HTMLElement = document.querySelector(".menu")!
                     const can:HTMLElement|null = document.querySelector(".map > canvas")
                     const side = window.innerWidth*0.55
 
                     const startMenuHeight = window.innerWidth > 344 ? 317 : 343
+                    console.log(menuIsOpen)
                     if(!menuIsOpen){ 
                         menu.style.transform = "scale(0)";
                         menu.style.height = "0"
@@ -29,11 +30,11 @@ function MenuButton() {
                         menu.style.transform = "scale(1)";
                         menu.style.height = startMenuHeight+"px"
                         if(can){
-                            can.style.top = `${250+startMenuHeight+side/11}px`
+                            can.style.top = `${250 + startMenuHeight + side/11}px`
                         }
                     }
 
-                    dispatch(setMenuIsOpen(true));
+                    dispatch(setMenuIsOpen(false));
                 }}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">

@@ -8,7 +8,7 @@ const settingsSlice = createSlice({
     level: 1,
     canSolutionBeOpen: true,
     canMenuBeOpen: true,
-    menuIsOpen: false,
+    menuIsOpen: true,
   },
   reducers: {
     setMenuIsOpen(state, actions) {
@@ -31,6 +31,11 @@ const settingsSlice = createSlice({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { setMenuIsOpen, levelIncrement, setRandom, setSolutionBeOpen, setMenuBeOpen } =
-  settingsSlice.actions;
+export const {
+  setMenuIsOpen,
+  levelIncrement,
+  setRandom,
+  setSolutionBeOpen,
+  setMenuBeOpen,
+} = settingsSlice.actions;
 export default settingsSlice.reducer;

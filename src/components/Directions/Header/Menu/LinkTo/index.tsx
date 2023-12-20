@@ -11,8 +11,6 @@ interface IPropsLinkTo{
 
 function LinkTo({path, content}:IPropsLinkTo) {
     const div = useRef<HTMLDivElement>(null)
-
-    const {canSolutionBeOpen, menuIsOpen} = useSelector((state:RootState)=>state.settings)
     const dispatch = useDispatch();
 
     const location = useLocation();
@@ -38,7 +36,7 @@ function LinkTo({path, content}:IPropsLinkTo) {
                             can.style.top = `${250+side/11}px`
                         }
 
-                        dispatch(setMenuIsOpen(false));
+                        dispatch(setMenuIsOpen(true));
                     }
                 }
             >
