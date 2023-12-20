@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/redusers/settingsSlice";
+import { RootState } from "../../../store/redusers/settingsSlice";
 import "./style.scss"
 import {useState} from "react"
+import { useDispatch } from "react-redux";
 function MenuButton() {
-    const [isOpen, setOpen ]= useState<Boolean>(false)
-    const {canSolutionBeOpen} = useSelector((state:RootState)=>state.settings)
+    const {canSolutionBeOpen, menuIsOpen} = useSelector((state:RootState)=>state.settings)
+    const dispatch = useDispatch();
     return (
         <>
             <div 
@@ -18,22 +19,22 @@ function MenuButton() {
                     const side = window.innerWidth*0.55
 
                     const startMenuHeight = window.innerWidth > 344 ? 317 : 343
-                    if(!isOpen){ 
+                    if(!menuIsOpen){ 
                         menu.style.transform = "scale(0)";
                         menu.style.height = "0"
-                        if(!!can){
+                        if(can){
                             can.style.top = `${250+side/11}px`
                         }
                     }
                     else {
                         menu.style.transform = "scale(1)";
                         menu.style.height = startMenuHeight+"px"
-                        if(!!can){
+                        if(can){
                             can.style.top = `${250+startMenuHeight+side/11}px`
                         }
                     }
 
-                    setOpen(isOpen => !isOpen)
+                    dispatch(setMenuIsOpen(true));
                 }}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">

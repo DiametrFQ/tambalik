@@ -8,8 +8,12 @@ const settingsSlice = createSlice({
     level: 1,
     canSolutionBeOpen: true,
     canMenuBeOpen: true,
+    menuIsOpen: false,
   },
   reducers: {
+    setMenuIsOpen(state, actions) {
+      state.menuIsOpen = actions.payload;
+    },
     setRandom(state, actions) {
       // console.log(actions.payload);
       state.random = Math.round(Math.random() * (actions.payload - 1));
@@ -27,6 +31,6 @@ const settingsSlice = createSlice({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { levelIncrement, setRandom, setSolutionBeOpen, setMenuBeOpen } =
+export const { setMenuIsOpen, levelIncrement, setRandom, setSolutionBeOpen, setMenuBeOpen } =
   settingsSlice.actions;
 export default settingsSlice.reducer;
