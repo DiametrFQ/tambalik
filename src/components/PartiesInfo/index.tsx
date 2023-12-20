@@ -20,22 +20,23 @@ function PartiesInfo({partyNames}: pipeListOfParties) {
         // canvasRef.current!.style.width  = '800px';
         // canvasRef.current!.style.height = '600px';
         const center: [number, number] = [width/2, width/2]
+        const radius = 110
         ctx.clearRect(0,0, 1000, 1000)
         partys.forEach((party, i) => {
             ctx.beginPath()
             ctx.strokeStyle = party.color.substring(4, 11)
             ctx.fillStyle = party.color.substring(4, 11)
             ctx.moveTo(...center)
-            ctx.arc(...center, 75, coord[i], coord[i+1], true)
+            ctx.arc(...center, radius, coord[i], coord[i+1], true)
             ctx.lineTo(...center)
             ctx.fill()
         }) 
         ctx.beginPath()
         ctx.fillStyle = "white"
-        ctx.arc(...center, 50, 0, Math.PI * 2, true); // Левый глаз
+        ctx.arc(...center, radius-40, 0, Math.PI * 2, true); // Левый глаз
         ctx.fill()
         ctx.fillStyle = "#c0b49380"
-        ctx.arc(...center, 50, 0, Math.PI * 2, true); // Левый глаз
+        ctx.arc(...center, radius-40, 0, Math.PI * 2, true); // Левый глаз
         ctx.fill()
 
         }
