@@ -17,12 +17,15 @@ $canvas-width: 130px;
     color: #000;
     font-size: 18px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 300;
     line-height: normal;
     
 }
 .list> .element{
     padding-top: 10px;
+}
+.list > .element > .persent {
+    font-weight: 700;
 }
 
 

@@ -24,7 +24,7 @@ function PartysList({partyNamesWithColor}: pipeListOfParties) {
                                     color: el.color,
                                 }} 
                                 >i
-                            </span> {el.title} {(Party.getPowerPersentParty(el.politica, "par")*100).toFixed()}%
+                            </span> {el.title} <span className='persent'>{(Party.getPowerPersentParty(el.politica, "par")*100).toFixed()}%</span>
                         </div>
                     )
                 })
