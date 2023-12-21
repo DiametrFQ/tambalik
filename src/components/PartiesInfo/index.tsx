@@ -10,8 +10,8 @@ type pipeListOfParties = {
 function PartiesInfo({partyNames}: pipeListOfParties) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const partys = Partys.getPartysOnSortedBy("par")
-    useEffect(() =>{
 
+    useEffect(() =>{
         const ctx = canvasRef.current!.getContext('2d')!;
         const coord = Partys.getCoordsCanvasFromPartyPowerBy("par")
         const width = 220
@@ -23,7 +23,7 @@ function PartiesInfo({partyNames}: pipeListOfParties) {
         const radius = 90
         const subRadius = radius-35
         
-        ctx.clearRect(0,0, 1000, 1000)
+        ctx.clearRect(0,0, width, width)
         partys.forEach((party, i) => {
             ctx.beginPath()
             ctx.strokeStyle = party.color.substring(4, 11)

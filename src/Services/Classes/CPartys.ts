@@ -34,6 +34,7 @@ export default class Partys {
     this.getPartysOnSortedBy(power).map((el) => el.politica);
 
   getLeader = () => this.partys[0].firstName + " " + this.partys[0].lastName;
+  getPremier = () => this.partys[1].firstName + " " + this.partys[1].lastName;
 
   getCoordsCanvasFromPartyPowerBy(power: PartyPower): number[] {
     const partyFrom = this.getCopySortPowersBy(power);
@@ -102,7 +103,8 @@ export default class Partys {
   getNamesPartyswithColor() {
     return this.getPartysOnSortedBy("par").map((p) => {
       return {
-        politica: p.title,
+        title: p.title,
+        politica: p.politica,
         color: p.color.substring(4, 11),
       };
     });

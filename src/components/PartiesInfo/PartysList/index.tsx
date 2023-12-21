@@ -1,13 +1,15 @@
+import Party from '../../../Data/partys';
+import { partysNames } from '../../../Services/types/TParty';
 import './style.scss'
 type pipeListOfParties = {
     partyNamesWithColor: {
-        politica: string;
+        politica: partysNames;
+        title: string
         color: string;
     }[]
 }
 
 function PartysList({partyNamesWithColor}: pipeListOfParties) {
-
 
     return (
         <div className="list">
@@ -22,7 +24,7 @@ function PartysList({partyNamesWithColor}: pipeListOfParties) {
                                     color: el.color,
                                 }} 
                                 >i
-                            </span> {el.politica}
+                            </span> {el.title} {(Party.getPowerPersentParty(el.politica, "par")*100).toFixed()}%
                         </div>
                     )
                 })

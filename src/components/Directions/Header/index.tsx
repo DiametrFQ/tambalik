@@ -13,7 +13,7 @@ function Header() {
                 <EventButton />
             </Link>
 
-        </ div>
+        </div>
     );
 }
 

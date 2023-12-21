@@ -1,37 +1,39 @@
-import { useSelector } from "react-redux";
-import "./style.scss"
-import { useDispatch } from "react-redux";
+import "./style.scss";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState, setMenuIsOpen } from "../../../../store/redusers/settingsSlice";
 function MenuButton() {
-    const {canSolutionBeOpen, menuIsOpen} = useSelector((state:RootState)=>state.settings)
+    const { menuIsOpen } = useSelector((state:RootState)=>state.settings);
     const dispatch = useDispatch();
     return (
         <>
             <div 
                 className='menuButton'
                 
-                onClick={()=>{
-                    if(!menuIsOpen) return
+                onClick={ () => {
+                    if(!menuIsOpen) return;
 
-                    const menu:HTMLElement = document.querySelector(".menu")!
-                    const can:HTMLElement|null = document.querySelector(".map > canvas")
-                    const side = window.innerWidth*0.55
+                    const menu = document.querySelector<HTMLElement>(".menu")!;
+                    const can = document.querySelector<HTMLCanvasElement>(".map > canvas");
+                    const side = window.innerWidth*0.55;
+                    const countOfLinks = 5;
+                    const indentation = 3;
+                    const startMenuHeight = 
+                        window.innerWidth > 344 
+                            ? 86 * countOfLinks + indentation
+                            : 120 + 86*(countOfLinks - 1) + indentation;
 
-                    const startMenuHeight = window.innerWidth > 344 ? 317 : 343
-                    console.log(menuIsOpen)
                     if(!menuIsOpen){ 
                         menu.style.transform = "scale(0)";
-                        menu.style.height = "0"
-                        if(can){
-                            can.style.top = `${250+side/11}px`
-                        }
+                        menu.style.height = "0";
+                        if(can)
+                            can.style.top = `${250 + side/11 }px`;
+                        
                     }
                     else {
                         menu.style.transform = "scale(1)";
-                        menu.style.height = startMenuHeight+"px"
-                        if(can){
-                            can.style.top = `${250 + startMenuHeight + side/11}px`
-                        }
+                        menu.style.height = startMenuHeight+"px";
+                        if(can)
+                            can.style.top = `${250 + startMenuHeight + side/11}px`;
                     }
 
                     dispatch(setMenuIsOpen(false));

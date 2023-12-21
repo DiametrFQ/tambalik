@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import "./style.scss"
-import { RootState, levelIncrement, setMenuBeOpen, setSolutionBeOpen } from "../../../store/redusers/settingsSlice"
+import { RootState, levelIncrement, setMenuBeOpen, setMenuIsOpen, setSolutionBeOpen } from "../../../store/redusers/settingsSlice"
 import { useDispatch } from "react-redux"
 
 type propsAnswer ={
@@ -24,6 +24,7 @@ function Answer({content, move}: propsAnswer) {
 
         dispatch(setSolutionBeOpen())
         dispatch(setMenuBeOpen())
+        dispatch(setMenuIsOpen(true))
         dispatch(levelIncrement())
         move()
     }

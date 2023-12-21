@@ -37,7 +37,7 @@ function PolicySituation() {
                         {
                             partys.getPowerPersentParty(partys.get()[0].politica, "par") > 0.5 
                                 ? "Запрещён" 
-                                : partys.get()[1].leader
+                                : partys.getPremier()
                         }
                     </span>
                 </div>
