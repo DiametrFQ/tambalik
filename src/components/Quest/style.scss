@@ -16,8 +16,10 @@
     font-size: 12px;
     padding: 5px;
     border-radius: 20px;
-    color: white;
-    background-color: green;
+    color: #000;
+    background-color: #FFC528;
+    font-weight: bold;
+    font-size: 13px;
     // text-align: right;
 }
 .quest{
@@ -32,4 +34,14 @@
     margin-bottom: 2px;
     // margin: 2px 0;
 }
-
+.quest > .condition > .reward-text {
+    padding: 10px 0px;
+}
+.quest > .condition > .reward-text > .reward {
+    font-weight: bold;
+}
+.quest > .condition > .reward > .imgRes {
+    height: 24px;
+    width: 24px;
+    display: inline;
+}

@@ -25,6 +25,7 @@ export type PartyKeys =
   | "par"
   | "pop"
   | "politica"
+  | "title"
   | "work";
 
 export type PartyPower = "pop" | "par";

@@ -7,6 +7,7 @@ import {
 } from "../store/redusers/modelWindowSlice";
 import {
   setPoliticalParty,
+  setPoliticalTitle,
   setRadicalism,
 } from "../store/redusers/trendsSlice";
 import Party from "./partys";
@@ -88,7 +89,7 @@ var events: TEvents[] = [
   {
     Newspaper: "Центральный квартал",
     content: `
-      Настало время перен! Популярность нынешних политик ищменилась!`,
+      Настало время перен! Популярность нынешних политик изменилась!`,
     answers: [
       {
         content: "Стадо так глупо...",
@@ -99,6 +100,7 @@ var events: TEvents[] = [
           else randomNameParty = "none";
 
           dispatch(setPoliticalParty(randomNameParty));
+          dispatch(setPoliticalTitle(partys.getPartyBy("politica", randomNameParty)?.title));
           dispatch(setActiveTrend(true));
         },
       },

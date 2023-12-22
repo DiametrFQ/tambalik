@@ -4,16 +4,17 @@ import store from "../store";
 import partys from "./partys";
 
 const politicalParty = store.getState().trends.politicalParty;
+const politicalTitle = store.getState().trends.title;
 var quests: TQuest[] = [
   {
-    questName: "Тест",
+    questName: "Угроза населению",
     conditions: [
       {
-        conditionText: "нет",
+        conditionText: `Поднимите уровень радикализма в стране до 30%`,
         condition: true,
       },
     ],
-    bonusText: () => "",
+    bonusText: () => "10%",
     bonus: () => {
       console.log("asd");
     },
@@ -22,14 +23,14 @@ var quests: TQuest[] = [
     timeLeftToWork: 0,
   },
   {
-    questName: "Time Тест",
+    questName: "Политический переворот",
     conditions: [
       {
-        conditionText: "нет",
+        conditionText: "Смените текущую правящую партию",
         condition: true,
       },
     ],
-    bonusText: () => "",
+    bonusText: () => "10%",
     bonus: () => {
       console.log("asd");
     },
@@ -38,15 +39,14 @@ var quests: TQuest[] = [
     timeLeftToWork: 0,
   },
   {
-    questName: "Волна " + politicalParty,
+    questName: `Волна ${politicalTitle}а`,
     conditions: [
       {
-        conditionText: `Политической партией в тенденции должна быть "${politicalParty}"`,
+        conditionText: `Политической партией в тенденции должна быть "${politicalTitle}"`,
         condition: true,
       },
     ],
-    bonusText: () =>
-      `партия ${politicalParty} получает бонус в популярности и парламенте`,
+    bonusText: () => "10%",
     bonus: () => {
       if (politicalParty !== "none") {
         partys.setPartyPower("pop", politicalParty, 1.15);

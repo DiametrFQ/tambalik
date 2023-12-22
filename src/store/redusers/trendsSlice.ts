@@ -7,12 +7,16 @@ const trendsSlice = createSlice({
   name: "trendsSlice",
   initialState: {
     politicalParty: "monarchist" as partysNames | "none",
+    title: "Монархизм" as string | "none",
     radicalism: 0,
     Num: 0,
   },
   reducers: {
     setPoliticalParty: (state, actions) => {
       state.politicalParty = actions.payload;
+    },
+    setPoliticalTitle: (state, actions) => {
+      state.title = actions.payload;
     },
     setRadicalism: (state, actions) => {
       state.radicalism += actions.payload;
@@ -29,5 +33,5 @@ const trendsSlice = createSlice({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { setPoliticalParty, setRadicalism } = trendsSlice.actions;
+export const { setPoliticalParty, setPoliticalTitle, setRadicalism } = trendsSlice.actions;
 export default trendsSlice.reducer;

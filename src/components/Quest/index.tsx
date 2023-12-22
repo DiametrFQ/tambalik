@@ -28,7 +28,7 @@ function Quest({quest}:questProps) {
     return (
         <div 
             className="quest"
-            style={{backgroundColor: quest.timeLeftToWork? "green" : ""}}
+            style={{backgroundColor: quest.timeLeftToWork ? "#FFC528" : ""}}
         >   
             <div
                 className="quest-name"
@@ -41,7 +41,7 @@ function Quest({quest}:questProps) {
                     onClick={()=>{
                         quest.timeLeftToWork = quest.workInterval
                     }}>
-                    Включить
+                    добавить
                 </button>}
 
             </div>
@@ -49,7 +49,7 @@ function Quest({quest}:questProps) {
             <div ref={conditionRef} className="condition">
                 {quest.conditions.map((el, index) => <Condition key={index} {...el}/>)}
 
-                <div>Награда: {quest.bonusText()}</div>
+                <div className="reward-text">Награда: <span className="reward">{quest.bonusText()}</span> <img className="imgRes" src="img/resurses/money.svg" alt="" /></div>
             </div>
         </div>
     );
