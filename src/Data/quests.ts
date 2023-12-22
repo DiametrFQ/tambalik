@@ -1,26 +1,35 @@
 import CQuests from "../Services/Classes/CQuests";
-import { TQuest } from "../Services/types/TQuest";
+import { TQuest, TextReward } from "../Services/types/TQuest";
 import store from "../store";
 import partys from "./partys";
 
 const politicalParty = store.getState().trends.politicalParty;
 const politicalTitle = store.getState().trends.title;
+const radicalism = store.getState().trends.radicalism;
+
 var quests: TQuest[] = [
   {
     questName: "Угроза населению",
     conditions: [
       {
         conditionText: `Поднимите уровень радикализма в стране до 30%`,
-        condition: true,
+        condition: radicalism >= 30,
       },
     ],
-    bonusText: () => "10%",
+    bonusText: () => {
+      const obj: TextReward[] = [{
+        reward: "10%",
+        directory: "chels/chel_" + partys.getPartyBy("politica", politicalParty)?.color.substring(5, 11)! + ".png"
+      }]
+      return obj;
+    },
     bonus: () => {
       console.log("asd");
     },
     conditionHidden: () => true,
     workInterval: 3,
     timeLeftToWork: 0,
+    state: false,
   },
   {
     questName: "Политический переворот",
@@ -30,13 +39,20 @@ var quests: TQuest[] = [
         condition: true,
       },
     ],
-    bonusText: () => "10%",
+    bonusText: () => {
+      const obj: TextReward[] = [{
+        reward: "10%",
+        directory: "chels/chel_" + partys.getPartyBy("politica", partys.getRandomPartyName())?.color.substring(5, 11)! + ".png"
+      }]
+      return obj;
+    },
     bonus: () => {
       console.log("asd");
     },
     conditionHidden: () => true,
     workInterval: 2,
     timeLeftToWork: 0,
+    state: false,
   },
   {
     questName: `Волна ${politicalTitle}а`,
@@ -46,7 +62,19 @@ var quests: TQuest[] = [
         condition: true,
       },
     ],
-    bonusText: () => "10%",
+    bonusText: () => {
+      const obj: TextReward[] = [
+      {
+        reward: "15%",
+        directory: "chels/chel_" + partys.getPartyBy("politica", politicalParty)?.color.substring(5, 11)! + ".png"
+      },
+      {
+        reward: "5%",
+        directory: "",
+      },
+      ]
+      return obj;
+    },
     bonus: () => {
       if (politicalParty !== "none") {
         partys.setPartyPower("pop", politicalParty, 1.15);
@@ -54,8 +82,9 @@ var quests: TQuest[] = [
       }
     },
     conditionHidden: () => politicalParty !== "none",
-    workInterval: -1,
-    timeLeftToWork: -1,
+    workInterval: 0,
+    timeLeftToWork: 0,
+    state: false,
   },
 ];
 

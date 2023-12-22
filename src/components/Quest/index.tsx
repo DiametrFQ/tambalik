@@ -28,28 +28,41 @@ function Quest({quest}:questProps) {
     return (
         <div 
             className="quest"
-            style={{backgroundColor: quest.timeLeftToWork ? "#FFC528" : ""}}
+            // style={{backgroundColor: quest.timeLeftToWork ? "#FFC528" : ""}}
         >   
             <div
+                style={{gridTemplateColumns: quest.state ? "1fr 80px" : "1fr 110px"}}
                 className="quest-name"
                 onClick={visabilityCondition}>
                 {quest.questName}
 
                 {quest.conditions.every(el => el.condition) && 
                     !quest.timeLeftToWork &&
-                <button
+                <button style={{backgroundColor: quest.state ? "#D6D6D6" : ""}}
                     onClick={()=>{
-                        quest.timeLeftToWork = quest.workInterval
+                        // quest.timeLeftToWork = quest.workInterval
+                        quest.state = true;
                     }}>
-                    добавить
+                    {quest.state ? "выполнено" : "забрать награду"}
                 </button>}
-
+                
             </div>
 
             <div ref={conditionRef} className="condition">
                 {quest.conditions.map((el, index) => <Condition key={index} {...el}/>)}
 
-                <div className="reward-text">Награда: <span className="reward">{quest.bonusText()}</span> <img className="imgRes" src="img/resurses/money.svg" alt="" /></div>
+                <div className="reward-text">Награда:
+                    {quest.bonusText().map((el) => {
+                        return (
+                            <>
+                            <span className="reward">
+                                {el.reward}
+                            </span>
+                            <img className="imgRes" src={el.directory} alt="" />
+                            </>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
