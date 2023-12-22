@@ -3,7 +3,7 @@ import "./style.scss"
 import { RootState } from "../../store/redusers/trendsSlice";
 import { setActiveTrend } from "../../store/redusers/modelWindowSlice";
 function Trends() {
-    const {politicalParty, radicalism} = useSelector((state:RootState)=>state.trends)
+    const {title, radicalism} = useSelector((state:RootState)=>state.trends)
     const dispatch = useDispatch()
     dispatch(setActiveTrend(false))
     return (
@@ -13,7 +13,7 @@ function Trends() {
                     Политическая партия:  
                 </div>
                 <span>
-                    {politicalParty === "none"? "нет":politicalParty}
+                    {title === "none"? "нет":title}
                 </span> 
             </div>      
 
