@@ -16,7 +16,8 @@ function PolicySituation() {
                         Текущая форма правления:
                     </div>
                     <span>
-                        Абсолютная монархия
+                        {partys.getPowerPersentParty(partys.get()[0].politica, "par") > 0.5?"Абсолют.\n": ""}
+                        {sortedParty[0].title}
                     </span>
                 </div>
                 <img src={sortedParty[0].leader} alt="" />
