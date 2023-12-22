@@ -7,6 +7,7 @@ import "./style.scss"
 function PolicySituation() {
     const dispatch = useDispatch()
     dispatch(setActivePolsit(false))
+    const sortedParty = partys.getPartysOnSortedBy("par")
     return (
         <div >
             <div className="policy-situation-info">
@@ -18,7 +19,7 @@ function PolicySituation() {
                         Абсолютная монархия
                     </span>
                 </div>
-                <img src={partys.get()[0].leader} alt="" />
+                <img src={sortedParty[0].leader} alt="" />
             </div>
             <div className="leaders-info">
                 <div className="head leader">

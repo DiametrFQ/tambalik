@@ -11,7 +11,7 @@ export function defeat(): [boolean, TEvents] {
   let defeat = false;
   if (people <= 1) {
     content =
-      "Поздравляем, вы были понижены до могильщика, так как жить в вашем государстве не возможно жить...";
+      "Поздравляем, вы были понижены до могильщика, так как жить в вашем государстве жить не возможно...";
     defeat = true;
   }
   if (Math.random() * 100 < radicalism - warPower) {
@@ -19,12 +19,8 @@ export function defeat(): [boolean, TEvents] {
       По последней информации глава государства был убит в своей же постели!`;
     defeat = true;
   }
-  const StrongParty = Party.getForChange().find(
-    (party) => (party.politica as partysNames) === "democratic"
-  )!;
-  if (
-    Party.getPowerPersentParty(StrongParty.politica as partysNames, "par") > 85
-  ) {
+  const StrongParty = Party.getPartysOnSortedBy("par")[0];
+  if (Party.getPowerPersentParty(StrongParty.politica, "par") > 0.85) {
     content = `Внимание, в государстве произошел государственный переворот! 
         На данный момент власть пренадлежит партии ${StrongParty.politica}! `;
     defeat = true;
@@ -32,7 +28,6 @@ export function defeat(): [boolean, TEvents] {
 
   const event: TEvents = {
     Newspaper: "Центральный квартал",
-    src: "",
     content,
     answers: [
       {

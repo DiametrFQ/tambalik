@@ -5,6 +5,7 @@ import quests from "../../../../Data/quests";
 import { TParty, partysNames } from "../../../../Services/types/TParty";
 import store from "../../../../store";
 import {
+  setEconomicPower,
   setMoney,
   setPeople,
   setWarPower,
@@ -30,29 +31,35 @@ export function trendInfluence(partyName: partysNames | "none") {
 }
 
 export function economicImpact() {
-  const { discipline, tax } = store.getState().inputsState;
+  const { discipline, tax, industry } = store.getState().inputsState;
   const { people, warPower, money } = store.getState().resurses;
 
   const democraticParty = Party.getForChange().find(
-    (party) => (party.politica as partysNames) === "democratic"
-  )!;
-  const socialistParty = Party.getForChange().find(
-    (party) => (party.politica as partysNames) === "socialist"
+    (party) => party.politica === "democratic"
   )!;
   const nationalistParty = Party.getForChange().find(
-    (party) => (party.politica as partysNames) === "nationalist"
+    (party) => party.politica === "nationalist"
   )!;
   const liberalParty = Party.getForChange().find(
-    (party) => (party.politica as partysNames) === "liberal"
+    (party) => party.politica === "liberal"
+  )!;
+  const monarchistParty = Party.getForChange().find(
+    (party) => party.politica === "monarchist"
+  )!;
+  const socialistParty = Party.getForChange().find(
+    (party) => party.politica === "socialist"
+  )!;
+  const greenParty = Party.getForChange().find(
+    (party) => party.politica === "green"
   )!;
 
   setPower(
     tax,
+    monarchistParty,
     democraticParty,
-    socialistParty,
     setPeople,
     setMoney,
-    ((people * -tax) / 10000) * (1 - warPower / 100),
+    -((people * -tax) / 10000) * (1 - warPower / 100),
     ((people / 100) * money * tax) / 10000,
     tax
   );
@@ -66,6 +73,16 @@ export function economicImpact() {
     (discipline / 1000) * money,
     discipline / 3
   );
+  setPower(
+    industry,
+    socialistParty,
+    greenParty,
+    setEconomicPower,
+    setMoney,
+    industry / 100,
+    (industry / 1000) * money,
+    industry
+  );
 }
 
 function setPower(
@@ -77,12 +94,14 @@ function setPower(
     | "resursersSlice/setMoney"
     | "resursersSlice/setPeople"
     | "resursersSlice/setWarPower"
+    | "resursersSlice/setEconomicPower"
   >,
   set2: ActionCreatorWithPayload<
     any,
     | "resursersSlice/setMoney"
     | "resursersSlice/setPeople"
     | "resursersSlice/setWarPower"
+    | "resursersSlice/setEconomicPower"
   >,
   formula1: number,
   formula2: number,
@@ -90,14 +109,17 @@ function setPower(
 ) {
   const dispatch = store.dispatch;
   const power = 1 + inputsState / (inputsState >= 0 ? 50 : -50);
-  const charDemSoc: ["par", "pop"] | ["pop", "par"] =
+  const chars: ["par", "pop"] | ["pop", "par"] =
     inputsState >= 0 ? ["par", "pop"] : ["pop", "par"];
+  console.log(power);
 
   Party.getForChange()[0].pop *= 2 - power;
-  partyYes[charDemSoc[0]] *= power;
-  partyNo[charDemSoc[1]] *= power;
+  partyYes[chars[0]] *= power;
+  partyNo[chars[1]] *= power;
 
   dispatch(set1(formula1));
   dispatch(set2(formula2));
   dispatch(setRadicalism(impactOnSociety / 100));
 }
+
+export const slicePower = () => {};

@@ -6,6 +6,7 @@ const inputsStateSlice = createSlice({
   initialState: {
     tax: 0,
     discipline: 0,
+    industry: 0,
   },
   reducers: {
     setTax(state, actions) {
@@ -14,9 +15,12 @@ const inputsStateSlice = createSlice({
     setDiscipline(state, actions) {
       state.discipline = actions.payload;
     },
+    setIndustry(state, actions) {
+      state.industry = actions.payload;
+    },
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { setTax, setDiscipline } = inputsStateSlice.actions;
+export const { setTax, setDiscipline, setIndustry } = inputsStateSlice.actions;
 export default inputsStateSlice.reducer;

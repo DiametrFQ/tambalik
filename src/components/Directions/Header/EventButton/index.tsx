@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
 import "./style.scss"
-import { RootState, setMenuBeOpen, setSolutionBeOpen, setRandom,} from "../../../../store/redusers/settingsSlice"
+import { RootState, setMenuBeOpen, setSolutionBeOpen, setRandom, setMenuIsOpen,} from "../../../../store/redusers/settingsSlice"
 import { useDispatch } from "react-redux"
 import { economicImpact, questsBonus } from "./service"
 import Events from "../../../../Data/events"
+import Party from "../../../../Data/partys"
 
 function EventButton() {
 
@@ -18,6 +19,11 @@ function EventButton() {
       dispatch(setRandom(Events.get().length))
       dispatch(setSolutionBeOpen())
       dispatch(setMenuBeOpen())
+      
+      dispatch(setMenuIsOpen(false))
+      Party.slicePower("par")
+      Party.slicePower("pop")
+
       // console.log(Party.get())
       economicImpact()
       questsBonus()

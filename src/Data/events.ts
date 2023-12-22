@@ -17,7 +17,6 @@ const dispatch = store.dispatch;
 var events: TEvents[] = [
   {
     Newspaper: "Центральный квартал",
-    src: "https://cdn.maximonline.ru/36/f2/63/36f2637ef294455f33494ac1ee827aff/583x417_0xac120005_3457988091527733829.jpg",
     content:
       "Политические действия принимают новую форму под которую нам нужно перестраиваться, если мы это конечно хотим...",
     answers: [
@@ -53,27 +52,7 @@ var events: TEvents[] = [
     ],
   },
   {
-    Newspaper: "Высшая гласность",
-    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT4f0GbYI-MnOY5H0yvErAdWdcUkOR7z3jmA&usqp=CAU",
-    content: `Сегодня стало известно о гибели нашего лидера ${Party.getLeader()} 
-     неизвестным террористом. Детективы расследуют это дело...`,
-    answers: [
-      {
-        content: "О боже!",
-        func() {
-          partys
-            .get()
-            .map((elem, i) => (i === 0 ? elem.pop * 1.1 : elem.pop * 0.9));
-          partys.get()[0].firstName = "dead";
-          partys.get()[0].lastName = "inside";
-          dispatch(setActivePolsit(true));
-        },
-      },
-    ],
-  },
-  {
     Newspaper: "Центральный квартал",
-    src: "https://cdn22.img.ria.ru/images/155775/02/1557750258_1:0:1000:562_600x0_80_0_0_9d1b638a93e7294df563e0f1f096a4c1.png",
     content: `Время выборов! Настало время выяснить на кого же теперь возлагаются надежды и трудности правления страной?`,
     answers: [
       {
@@ -81,6 +60,7 @@ var events: TEvents[] = [
         func() {
           partys.get().forEach((elem, i) => (elem.par = elem.pop / (i + 1)));
           dispatch(setActivePolsit(true));
+          console.log(partys.get());
         },
       },
       {
@@ -107,7 +87,6 @@ var events: TEvents[] = [
   },
   {
     Newspaper: "Центральный квартал",
-    src: "https://cdn22.img.ria.ru/images/155775/02/1557750258_1:0:1000:562_600x0_80_0_0_9d1b638a93e7294df563e0f1f096a4c1.png",
     content: `
       Настало время перен! Популярность нынешних политик ищменилась!`,
     answers: [

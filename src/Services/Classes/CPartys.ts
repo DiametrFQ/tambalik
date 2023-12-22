@@ -1,3 +1,4 @@
+import { copyFileSync } from "fs";
 import {
   PartyKeys,
   PartyPower,
@@ -33,8 +34,14 @@ export default class Partys {
   getPartysNameSortedBy = (power: PartyPower): string[] =>
     this.getPartysOnSortedBy(power).map((el) => el.politica);
 
-  getLeader = () => this.partys[0].firstName + " " + this.partys[0].lastName;
-  getPremier = () => this.partys[1].firstName + " " + this.partys[1].lastName;
+  getLeader = () => {
+    const leaderParty = this.getPartysOnSortedBy("par")[0];
+    return leaderParty.firstName + " " + leaderParty.lastName;
+  };
+  getPremier = () => {
+    const secondParty = this.getPartysOnSortedBy("par")[1];
+    return secondParty.firstName + " " + secondParty.lastName;
+  };
 
   getCoordsCanvasFromPartyPowerBy(power: PartyPower): number[] {
     const partyFrom = this.getCopySortPowersBy(power);
@@ -108,5 +115,20 @@ export default class Partys {
         color: p.color.substring(4, 11),
       };
     });
+  }
+  slicePower(power: PartyPower) {
+    console.log(this.getForChange().map((p) => p[power]));
+    console.log(this.get().some((p) => p[power] > 100_000));
+
+    if (this.get().some((p) => p[power] > 100_000)) {
+      console.log("asd");
+      this.getForChange().map((p) => {
+        p[power] = +p[power].toFixed() / 10;
+      });
+    }
+    this.getForChange().map((p) => {
+      p[power] = p[power] < 0 ? 0 : p[power];
+    });
+    console.log(this.getForChange().map((p) => p[power]));
   }
 }

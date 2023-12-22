@@ -9,7 +9,6 @@ const resursersSlice = createSlice({
     people: 1000,
     warPower: 0,
     economicPower: 2,
-    supportCivilServants: 0,
   },
   reducers: {
     setMoney: (state, actions) => {
@@ -32,7 +31,7 @@ const resursersSlice = createSlice({
       }
     },
     setEconomicPower: (state, actions) => {
-      state.warPower += actions.payload;
+      state.economicPower += actions.payload;
       setActiveEconom(true);
     },
     setSupportCivilServants: (state, actions) => {
