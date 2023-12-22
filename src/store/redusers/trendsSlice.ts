@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import store from "..";
 import { partysNames } from "../../Services/types/TParty";
 import { setActiveTrend } from "./modelWindowSlice";
+import partys from "../../Data/partys";
 
 const trendsSlice = createSlice({
   name: "trendsSlice",
@@ -14,9 +15,15 @@ const trendsSlice = createSlice({
   reducers: {
     setPoliticalParty: (state, actions) => {
       state.politicalParty = actions.payload;
-    },
-    setPoliticalTitle: (state, actions) => {
-      state.title = actions.payload;
+      if (actions.payload != "none") {
+        const translatePartyName = partys.getPartyBy(
+          "politica",
+          actions.payload
+        )!.title!;
+        state.title = translatePartyName;
+      } else {
+        state.title = "нет";
+      }
     },
     setRadicalism: (state, actions) => {
       state.radicalism += actions.payload;
@@ -33,5 +40,5 @@ const trendsSlice = createSlice({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const { setPoliticalParty, setPoliticalTitle, setRadicalism } = trendsSlice.actions;
+export const { setPoliticalParty, setRadicalism } = trendsSlice.actions;
 export default trendsSlice.reducer;

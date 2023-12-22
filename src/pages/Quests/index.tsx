@@ -12,9 +12,8 @@ function Quests() {
     return (
 
         <div className="Quests">
-
-            {quests.get().map((el, index) => el.conditionHidden() && 
-            <Quest key={index} quest={el}/>)}
+            {quests.get().map((el, index) => { return el.conditionHidden() && 
+            <Quest key={index} quest={el}/>})}
         </div>
 
     );

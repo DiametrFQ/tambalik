@@ -8,6 +8,7 @@ export type TParty = {
   work: string;
   pop: number;
   par: number;
+  theEndText: string;
 };
 
 export type partysNames =

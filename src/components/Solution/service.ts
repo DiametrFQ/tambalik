@@ -41,3 +41,19 @@ export function defeat(): [boolean, TEvents] {
 
   return [defeat, event];
 }
+
+export function theEnd(theEndTextParty: string): TEvents {
+  const event: TEvents = {
+    Newspaper: "Центральный квартал",
+    content: theEndTextParty,
+    answers: [
+      {
+        content: "Ура!",
+        func() {
+          window.location.reload();
+        },
+      },
+    ],
+  };
+  return event;
+}

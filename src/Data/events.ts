@@ -1,13 +1,13 @@
 import CEvents from "../Services/Classes/CEvents";
 import { TEvents } from "../Services/types/TEvent";
 import store from "../store";
+import React from "react";
 import {
   setActivePolsit,
   setActiveTrend,
 } from "../store/redusers/modelWindowSlice";
 import {
   setPoliticalParty,
-  setPoliticalTitle,
   setRadicalism,
 } from "../store/redusers/trendsSlice";
 import Party from "./partys";
@@ -100,7 +100,6 @@ var events: TEvents[] = [
           else randomNameParty = "none";
 
           dispatch(setPoliticalParty(randomNameParty));
-          dispatch(setPoliticalTitle(partys.getPartyBy("politica", randomNameParty)?.title));
           dispatch(setActiveTrend(true));
         },
       },
@@ -110,3 +109,6 @@ var events: TEvents[] = [
 
 var Events = new CEvents(events);
 export default Events;
+function JSXElementConstructor(): any {
+  throw new Error("Function not implemented.");
+}

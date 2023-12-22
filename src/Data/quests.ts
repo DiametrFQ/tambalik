@@ -1,11 +1,17 @@
 import CQuests from "../Services/Classes/CQuests";
 import { TQuest, TextReward } from "../Services/types/TQuest";
 import store from "../store";
+import Party from "./partys";
 import partys from "./partys";
 
 const politicalParty = store.getState().trends.politicalParty;
 const politicalTitle = store.getState().trends.title;
 const radicalism = store.getState().trends.radicalism;
+
+let randomNameParty = "none";
+if (politicalParty !== "none") {
+  randomNameParty = partys.getRandomPartyNameSlice(politicalParty);
+}
 
 var quests: TQuest[] = [
   {
@@ -17,10 +23,17 @@ var quests: TQuest[] = [
       },
     ],
     bonusText: () => {
-      const obj: TextReward[] = [{
-        reward: "10%",
-        directory: "chels/chel_" + partys.getPartyBy("politica", politicalParty)?.color.substring(5, 11)! + ".png"
-      }]
+      const obj: TextReward[] = [
+        {
+          reward: "10%",
+          directory:
+            "chels/chel_" +
+            partys
+              .getPartyBy("politica", politicalParty)
+              ?.color.substring(5, 11)! +
+            ".png",
+        },
+      ];
       return obj;
     },
     bonus: () => {
@@ -35,19 +48,28 @@ var quests: TQuest[] = [
     questName: "Политический переворот",
     conditions: [
       {
-        conditionText: "Смените текущую правящую партию",
-        condition: true,
+        conditionText: `Партия в тенденции не должен быть "${politicalTitle}"`,
+        condition:
+          store.getState().trends.politicalParty !==
+          Party.getPartysOnSortedBy("par")[0].title,
       },
     ],
     bonusText: () => {
-      const obj: TextReward[] = [{
-        reward: "10%",
-        directory: "chels/chel_" + partys.getPartyBy("politica", partys.getRandomPartyName())?.color.substring(5, 11)! + ".png"
-      }]
+      const obj: TextReward[] = [
+        {
+          reward: "10%",
+          directory:
+            "chels/chel_" +
+            partys
+              .getPartyBy("politica", politicalParty) //store.getState().trends.politicalParty)
+              ?.color.substring(5, 11)! +
+            ".png",
+        },
+      ];
       return obj;
     },
     bonus: () => {
-      console.log("asd");
+      Party.getPartysOnSortedBy("par")[0].par /= 2;
     },
     conditionHidden: () => true,
     workInterval: 2,
@@ -55,24 +77,31 @@ var quests: TQuest[] = [
     state: false,
   },
   {
-    questName: `Волна ${politicalTitle}а`,
+    questName: `Волна ${partys.getPartyBy("politica", randomNameParty)?.title}`,
     conditions: [
       {
-        conditionText: `Политической партией в тенденции должна быть "${politicalTitle}"`,
-        condition: true,
+        conditionText: `Политической партией в тенденции должен быть "${
+          partys.getPartyBy("politica", randomNameParty)?.title
+        }"`,
+        condition: store.getState().trends.politicalParty === randomNameParty,
       },
     ],
     bonusText: () => {
       const obj: TextReward[] = [
-      {
-        reward: "15%",
-        directory: "chels/chel_" + partys.getPartyBy("politica", politicalParty)?.color.substring(5, 11)! + ".png"
-      },
-      {
-        reward: "5%",
-        directory: "",
-      },
-      ]
+        {
+          reward: "15%",
+          directory:
+            "chels/chel_" +
+            partys
+              .getPartyBy("politica", randomNameParty)
+              ?.color.substring(5, 11)! +
+            ".png",
+        },
+        {
+          reward: "5%",
+          directory: "icons/Risunok1.png",
+        },
+      ];
       return obj;
     },
     bonus: () => {

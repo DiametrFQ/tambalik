@@ -37,9 +37,11 @@
 }
 .quest > .condition > .reward-text > .reward {
     font-weight: bold;
+    margin-left: 5px;
 }
-.quest > .condition > .reward > .imgRes {
+.quest > .condition > .reward-text > .imgRes {
     height: 24px;
     width: 24px;
     display: inline;
+    margin-right: 5px;
 }

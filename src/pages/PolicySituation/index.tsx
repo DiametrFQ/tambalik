@@ -16,7 +16,6 @@ function PolicySituation() {
                         Текущая форма правления:
                     </div>
                     <span>
-                        {partys.getPowerPersentParty(partys.get()[0].politica, "par") > 0.5?"Абсолют.\n": ""}
                         {sortedParty[0].title}
                     </span>
                 </div>

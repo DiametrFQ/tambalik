@@ -82,9 +82,15 @@ export default class Partys {
   }
 
   getRandomPartyName(): string {
-    return this.getPartysCharacteristics("politica")[
+    const random = this.getPartysCharacteristics("politica")[
       Math.round(Math.random() * this.get().length - 1)
     ] as string;
+    return random;
+  }
+
+  getRandomPartyNameSlice(partyName: partysNames): partysNames {
+    const arr = this.get().filter((p) => p["politica"] !== partyName);
+    return arr[Math.round(Math.random() * (arr.length - 1))].politica;
   }
 
   getPartyBy(charKey: PartyKeys, char: string) {
