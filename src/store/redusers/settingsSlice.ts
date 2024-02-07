@@ -1,27 +1,41 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import store from '..';
-import events from '../../Data/events';
+import { createSlice } from "@reduxjs/toolkit";
+import store from "..";
 
 const settingsSlice = createSlice({
-  name: 'settingsSlice',
+  name: "settingsSlice",
   initialState: {
-    Check: false,
-    Count: 0,
-    Num: 0,
+    random: 0,
+    level: 1,
+    canSolutionBeOpen: true,
+    canMenuBeOpen: true,
+    menuIsOpen: true,
   },
   reducers: {
-    plusCount: (store) => {
-        store.Count++;
+    setMenuIsOpen(state, actions) {
+      state.menuIsOpen = actions.payload;
     },
-    changeNum: (store) => {
-        store.Num += (store.Count === 0 ? 0 : Math.floor(Math.random() * events.length));
+    setRandom(state, actions) {
+      // console.log(actions.payload);
+      state.random = Math.round(Math.random() * (actions.payload - 1));
     },
-    changeCheck: (store) => {
-      store.Check = !store.Check;
-  },
+    levelIncrement(state) {
+      ++state.level;
+    },
+    setSolutionBeOpen(state) {
+      state.canSolutionBeOpen = !state.canSolutionBeOpen;
+    },
+    setMenuBeOpen(state) {
+      state.canMenuBeOpen = !state.canMenuBeOpen;
+    },
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export const {plusCount, changeNum, changeCheck} = settingsSlice.actions;
+export const {
+  setMenuIsOpen,
+  levelIncrement,
+  setRandom,
+  setSolutionBeOpen,
+  setMenuBeOpen,
+} = settingsSlice.actions;
 export default settingsSlice.reducer;

@@ -1,0 +1,40 @@
+$canvas-width: 130px;
+
+.list-of-parties{
+    display: grid;
+    grid-template-columns: 1fr $canvas-width;
+    margin-top: 2px;
+    padding:  12px 0 12px 12px;
+    background-color: rgba(192, 180, 147, 0.10);
+}
+
+.list-of-parties .title {
+    padding-left: 20px;
+}
+
+.list{
+    margin-left: 20px;
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    
+}
+.list> .element{
+    padding-top: 10px;
+}
+.list > .element > .persent {
+    font-weight: 700;
+}
+
+
+.list-of-parties>canvas{
+
+    width: $canvas-width;
+    height: $canvas-width;
+    // padding-right: 210px;
+    // padding-right: 42%;
+    margin: auto 0;
+
+}

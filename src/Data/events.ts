@@ -1,104 +1,114 @@
-import { IEvents } from '../Interfaces/IEvent';
-import partys from './partys';
+import CEvents from "../Services/Classes/CEvents";
+import { TEvents } from "../Services/types/TEvent";
+import store from "../store";
+import React from "react";
+import {
+  setActivePolsit,
+  setActiveTrend,
+} from "../store/redusers/modelWindowSlice";
+import {
+  setPoliticalParty,
+  setRadicalism,
+} from "../store/redusers/trendsSlice";
+import Party from "./partys";
+import partys from "./partys";
 
-const events: IEvents[] = [
-    {
-        "Newspaper":'Welcome!',
-        "src":'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzsbXSF1F83l-hqGbRnkpdUhmonrKbEsAWUw&usqp=CAU',
-        "content": "Приветствую! Ты играешь в Tambalik! Кнопка слева тебе даст общеполитическую информацию в стране, кнопка с права начнет новый ход где ты сможешь изменить политическую ситуацию в свою пользу, какой бы она не была. Вообще, на самом деле это все. Возможно здесь появится что-то еще если я придумаю.",
-        "answers":[
-            { 
-                "content": 'Понятно',
-                func() {},
-            },
-            {
-                "content": 'Хорошо!',
-                func() {},
-            },
-            {
-                "content": 'Что?',
-                func() {},
-            },
-        ]
-    },
-    {
-        "Newspaper":'Центральный квартал',
-        "src":'https://cdn.maximonline.ru/36/f2/63/36f2637ef294455f33494ac1ee827aff/583x417_0xac120005_3457988091527733829.jpg',
-        "content": "Политические действия принимают новую форму под которую нам нужно перестраиваться, если мы это конечно хотим...",
-        "answers":[
-            { 
-                "content": 'Поддержать правящую партию',
-                func() {
-                    partys[0].pop *= Math.random() + 0.9;
-                },
-            },
-            {
-                "content": 'Поддержать оппозиционную партию',
-                func() {
-                    const summPop = partys.reduce((sum,elem) => sum + elem.pop, 0)
+const dispatch = store.dispatch;
 
-                    partys[1].pop += Math.random() * summPop;
-                },
-            },
-            {
-                "content": 'Поддержать слабую партию',
-                func() {
-                    const rbd = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min)
+var events: TEvents[] = [
+  {
+    Newspaper: "Центральный квартал",
+    content:
+      "Политические действия принимают новую форму под которую нам нужно перестраиваться, если мы это конечно хотим...",
+    answers: [
+      {
+        content: "Поддержать правящую партию",
+        func() {
+          partys.get()[0].pop *= Math.random() + 0.9;
+          dispatch(setActivePolsit(true));
+        },
+      },
+      {
+        content: "Поддержать оппозиционную партию",
+        func() {
+          const summPop = partys.get().reduce((sum, elem) => sum + elem.pop, 0);
 
-                    const summPop = partys.reduce((sum,elem) => sum + elem.pop, 0)
+          partys.get()[1].pop += Math.random() * summPop;
+          dispatch(setActivePolsit(true));
+        },
+      },
+      {
+        content: "Поддержать слабую партию",
+        func() {
+          const rbd = (min: number, max: number) =>
+            Math.floor(Math.random() * (max - min) + min);
 
-                    partys[ rbd(2, partys.length-1) ].pop += 0.2 * summPop;
-                },
-            },
-        ]
-    },
-    {
-        "Newspaper":'Высшая гласность',
-        "src":'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT4f0GbYI-MnOY5H0yvErAdWdcUkOR7z3jmA&usqp=CAU',
-        "content":`Сегодня стало известно о гибели нашего лидера ${partys[0].firstName} ${partys[0].lastName} неизвестным террористом. Детективы расследуют это дело...`,
-        "answers":[
-            { 
-                "content": 'О боже!',
-                func() {
-                    partys.map((elem, i) =>  i === 0 ? elem.pop * 1.1 : elem.pop  *0.9 )
-                    partys[0].firstName = 'dead'
-                    partys[0].lastName = 'inside'
-                },
-            },
-        ]
-    },
-    {
-        "Newspaper":'Центральный квартал',
-        "src":'https://cdn22.img.ria.ru/images/155775/02/1557750258_1:0:1000:562_600x0_80_0_0_9d1b638a93e7294df563e0f1f096a4c1.png',
-        "content":`Время выборов! Настало время выяснить на кого же теперь возлагаются надежды и трудности правления страной?`,
-        "answers":[
-            { 
-                "content": 'Провести выборы!',
-                func() {
+          const summPop = partys.get().reduce((sum, elem) => sum + elem.pop, 0);
 
-                    partys.forEach((elem, i) => elem.par = elem.pop / (i+1))
+          partys.get()[rbd(2, partys.get().length - 1)].pop += 0.2 * summPop;
 
-                },
-            },
-            { 
-                "content": 'Оппозиция должна выиграть!',
-                func() {
+          dispatch(setActivePolsit(true));
+        },
+      },
+    ],
+  },
+  {
+    Newspaper: "Центральный квартал",
+    content: `Время выборов! Настало время выяснить на кого же теперь возлагаются надежды и трудности правления страной?`,
+    answers: [
+      {
+        content: "Провести выборы!",
+        func() {
+          partys.get().forEach((elem, i) => (elem.par = elem.pop / (i + 1)));
+          dispatch(setActivePolsit(true));
+          console.log(partys.get());
+        },
+      },
+      {
+        content: "Оппозиция должна выиграть!",
+        func() {
+          partys.get().forEach((elem, i) => (elem.par = elem.pop / (i + 1)));
 
-                    partys.forEach((elem, i) => elem.par = elem.pop / (i+1))
+          partys.get()[1].par *= Math.random() + 1;
+          dispatch(setRadicalism(-3));
+          dispatch(setActivePolsit(true));
+        },
+      },
+      {
+        content: "Пусть все останется как есть...",
+        func() {
+          partys.get().forEach((elem, i) => (elem.par = elem.pop / (i + 1)));
 
-                    partys[1].par *= Math.random() + 1
-                },
-            },
-            { 
-                "content": 'Пусть все останется как есть...',
-                func() {
-                    partys.forEach((elem, i) => elem.par = elem.pop / (i+1))
+          partys.get()[0].par *= Math.random() + 2;
+          dispatch(setRadicalism(8));
+          dispatch(setActivePolsit(true));
+        },
+      },
+    ],
+  },
+  {
+    Newspaper: "Центральный квартал",
+    content: `
+      Настало время перен! Популярность нынешних политик изменилась!`,
+    answers: [
+      {
+        content: "Стадо так глупо...",
+        func() {
+          let randomNameParty = "";
 
-                    partys[0].par *= Math.random() + 2
-                },
-            },
-        ]
-    },
-]
+          if (Math.random() > 0.2) randomNameParty = Party.getRandomPartyName();
+          else randomNameParty = "none";
 
-export default events
+          dispatch(setPoliticalParty(randomNameParty));
+          dispatch(setActiveTrend(true));
+        },
+      },
+    ],
+  },
+];
+
+var Events = new CEvents(events);
+export default Events;
+function JSXElementConstructor(): any {
+  throw new Error("Function not implemented.");
+}

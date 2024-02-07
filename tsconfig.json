@@ -19,13 +19,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "paths": {
-      "@Data/*":["./src/Data/*"],
-      "@Interfaces/*":["./src/Interfaces/*"],
-    }
+    // "paths": {
+    //   "@Data/*":["./src/Data/*"],
+    //   "@Interfaces/*":["./src/Interfaces/*"],
+    // }
   },
   "include": [
     "src"
-  ]
+, "src/index.tsx", "src/Data"  ]
 
 }
